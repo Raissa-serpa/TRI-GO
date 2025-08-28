@@ -1,0 +1,172 @@
+/* ============================================================
+   TRI-GO • OFERTA — look & feel do mock
+============================================================ */
+
+/* ---------- Vars ---------- */
+:root{
+  --gold: #d9bf71;
+  --gold-soft:#eadfbf;
+  --green:#1f6d3d;
+  --green-600:#1a5a33;
+  --green-50:#f3f9f5;
+  --ink:#2b2b2b;
+  --muted:#6b7280;
+  --line:#ececec;
+  --card:#fff;
+}
+
+/* ---------- Shell ---------- */
+.offer-container{ max-width:1200px; margin:16px auto; padding:0 24px; }
+.offer-back{ display:inline-flex; gap:8px; align-items:center; font-weight:800; color:#374151; text-decoration:none; margin:8px 0 12px; }
+.offer-grid{ display:grid; grid-template-columns:1.15fr .45fr; gap:24px; align-items:start; }
+@media (max-width:1024px){ .offer-grid{ grid-template-columns:1fr; } }
+
+.card{ background:var(--card); border:1px solid rgba(0,0,0,.07); border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.05); }
+
+/* ---------- Main card ---------- */
+.offer-main{ padding:16px 16px 22px; border-top:3px solid var(--gold-soft); }
+.offer-hero{ display:grid; grid-template-columns:300px 1fr; gap:16px; }
+@media (max-width:760px){ .offer-hero{ grid-template-columns:1fr; } }
+
+.offer-img{
+  width:100%; height:190px; object-fit:cover;
+  border-radius:10px; border:1px solid #eaeaea;
+}
+
+.offer-title{
+  margin:4px 0 8px; font:800 18px/1.2 "Segoe UI",system-ui,Arial;
+  color:var(--gold); text-align:center;
+  border-bottom:1px solid var(--gold-soft); padding-bottom:6px;
+}
+
+/* ---------- Summary blocks ---------- */
+.offer-summary{ padding-top:6px; }
+.offer-kind{ display:none; } /* o título já cumpre o papel */
+
+.spec-row{ display:flex; align-items:flex-start; gap:10px; padding:7px 0; }
+.spec-ico{ width:18px; height:18px; flex:0 0 18px; opacity:.95; }
+.spec-label{ font-weight:800; color:var(--muted); font-size:13px; line-height:1.1; }
+.spec-value{ color:var(--ink); font-weight:700; font-size:14px; }
+.spec-note{ color:var(--muted); font-size:13.5px; }
+
+.lab-box{
+  margin:6px 0 4px; padding:10px 12px;
+  background:#fffef9; border:1px solid #f3e8d1; border-radius:8px;
+  font-size:13px; color:#4b5563;
+}
+.lab-line{ margin:3px 0; }
+.lab-k{ color:var(--gold); font-weight:800; margin-right:6px; }
+.lab-muted{ color:#9ca3af; margin-left:4px; }
+
+.spec-divider{
+  border:0; height:1px; margin:10px 0;
+  background:linear-gradient(90deg,#eee,transparent,#eee);
+}
+
+/* ---------- Price pill ---------- */
+.offer-divider{ border:0; height:1px; background:linear-gradient(90deg,#eee,transparent,#eee); margin:14px 0; }
+.offer-pricebar{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:8px 12px; border-radius:8px;
+  background:var(--green-50); border:1px solid #d9e6df;
+  color:var(--green); font-weight:800;
+}
+.offer-pricebar #offer-price{ font-size:16px; }
+.offer-pricebar #offer-unidade{ color:#7b8592; font-weight:700; }
+
+/* ---------- CTAs (compactos, verdes) ---------- */
+.offer-cta-title{
+  margin:18px 0 10px; text-align:center;
+  font:800 18px/1.2 "Segoe UI",system-ui,Arial; color:#374151;
+}
+
+.offer-cta-actions{
+  display:flex; justify-content:center; gap:28px; flex-wrap:wrap;
+}
+
+.offer-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:230px; padding:12px 18px; border-radius:8px;
+  text-transform:uppercase; letter-spacing:.02em;
+  font:800 14px/1.15 "Segoe UI",system-ui,Arial;
+  color:#fff; background:var(--green);
+  border:1px solid var(--green-600);
+  box-shadow:0 2px 0 rgba(0,0,0,.05);
+  text-decoration:none; transition:transform .06s ease, filter .2s ease;
+}
+.offer-btn:hover{ filter:brightness(.98); transform:translateY(-1px); }
+.offer-btn:active{ transform:translateY(0); }
+.offer-btn--frete{ background:var(--green); }
+.offer-btn--prop { background:var(--green-600); }
+
+/* ---------- Sidebar ---------- */
+.offer-sidebar{ display:grid; gap:18px; position:sticky; top:18px; }
+
+.side-card{
+  padding:14px; border-radius:12px; background:#fff;
+  border:1px solid rgba(0,0,0,.06); box-shadow:0 8px 18px rgba(0,0,0,.05);
+}
+.side-title{
+  font:800 14px/1.2 "Segoe UI",system-ui,Arial; color:#222;
+  text-align:center; margin:0 0 8px; letter-spacing:.02em;
+  border-bottom:1px solid var(--line); padding-bottom:6px;
+}
+
+.map-embed{ border-radius:10px; overflow:hidden; border:1px solid #e9edf1; }
+.map-embed iframe{ display:block; width:100%; height:240px; border:0; }
+
+/* === LATERAL • OUTRAS OFERTAS — modo compacto === */
+.offer-sidebar .side-card{ padding:12px 12px; }
+
+.offer-sidebar #ALL_OFFERS{
+  display:grid !important;
+  grid-template-columns:1fr;
+  gap:10px;                 /* menos espaço entre cards */
+}
+
+.offer-sidebar #ALL_OFFERS a.offer-card.small{
+  display:grid !important;
+  grid-template-columns:72px 1fr;  /* thumb menor */
+  align-items:center;
+  gap:10px;
+  padding:8px 10px;                 /* menos padding */
+  border:1px solid #e8ecf0;
+  border-radius:10px;
+  background:#fff;
+  text-decoration:none;
+  color:inherit;
+  box-shadow:0 4px 10px rgba(0,0,0,.04);  /* sombra mais leve */
+  transition:transform .06s ease, box-shadow .2s ease;
+}
+.offer-sidebar #ALL_OFFERS a.offer-card.small:hover{
+  transform:translateY(-1px);
+  box-shadow:0 8px 16px rgba(0,0,0,.06);
+}
+
+.offer-sidebar #ALL_OFFERS a.offer-card.small > img{
+  width:72px; height:54px;          /* thumb mais compacta */
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #f0f0f0;
+}
+
+.offer-sidebar #ALL_OFFERS .offer-info{ display:grid; gap:2px; }
+
+.offer-sidebar #ALL_OFFERS .offer-price{
+  color:#2b2b2b !important;
+  font-weight:800 !important;
+  font-size:15px !important;        /* ligeiramente menor */
+  line-height:1.15;
+  margin:0;
+}
+.offer-sidebar #ALL_OFFERS .offer-price .price-unit{
+  color:#6b7280 !important;
+  font-weight:600;
+}
+
+.offer-sidebar #ALL_OFFERS .offer-desc{
+  color:#6b7280 !important;
+  font-size:12px !important;
+  line-height:1.25;
+  margin:0;
+}

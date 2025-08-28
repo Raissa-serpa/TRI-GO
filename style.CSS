@@ -1,0 +1,389 @@
+/* ==========================================================================
+   ARQUIVO: style.css
+   DESCRIÇÃO: Estilos principais do site TRI-GO.
+   DEPENDÊNCIAS: globals.css (reset/base)
+   ========================================================================== */
+
+/* ==========================================================================
+   VARIÁVEIS (STYLEGUIDE)
+   ========================================================================== */
+:root {
+  /* Cores */
+  --gold-brand: rgba(224, 192, 104, 1);
+  --green-brand: rgba(34, 139, 66, 1);
+  --green-text:  rgba(30, 81, 40, 1);
+  --green-cta:   rgba(60, 191, 97, 1);
+  --text-primary:   rgba(43, 43, 43, 1);
+  --text-secondary: rgba(94, 94, 94, 1);
+  --border-color:   rgba(210, 180, 140, 1);
+  --white: #fff;
+
+  /* Fontes */
+  --font-heading: "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-body:    "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   BASE / LAYOUT
+   ========================================================================== */
+body {
+  background-color: var(--white);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Helpers de cor do logo */
+.text-green { color: var(--green-brand); }
+.text-gold  { color: var(--gold-brand); }
+
+/* ==========================================================================
+   HEADER + NAV
+   ========================================================================== */
+.header {
+  display: flex;
+  align-items: center;
+  height: 110px;
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0 2px 16px rgba(0,0,0,.08);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
+  width: 100%;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo { display: flex; align-items: center; gap: 0; }
+
+.logo-image {
+  width: 48px; height: 48px;
+  border-radius: 30%;
+  object-fit: contain;
+  background: transparent;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Menu principal */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.main-nav a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .3s;
+}
+
+.main-nav a:hover { color: var(--green-brand); }
+
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: -4px;
+  transform: translateX(-50%);
+  width: 60%; height: 3px;
+  background: var(--green-cta);
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   DROPDOWN: ENTRAR
+   ========================================================================== */
+.dropdown { position: relative; display: inline-block; }
+
+.dropbtn {
+  background: var(--green-brand);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  transition: background .3s ease;
+}
+.dropbtn:hover { background: var(--green-cta); }
+.dropbtn .arrow { margin-left: 5px; }
+
+.dropdown-content {
+  position: absolute;
+  top: 100%; left: 0;
+  display: none;
+  min-width: 130px;
+  max-height: 200px;      /* evita estourar a tela */
+  overflow-y: auto;
+  background: var(--gold-brand);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  z-index: 20;
+}
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.dropdown-content a:hover { background: var(--text-secondary); }
+
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown:hover .dropbtn {
+  background: var(--text-secondary);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* ==========================================================================
+   DROPDOWN: PARCEIRO (horizontal)
+   ========================================================================== */
+.nav-parceiro-dropdown { position: relative; display: inline-block; }
+
+.nav-parceiro-dropdown > a {
+  display: inline-block;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color .3s;
+}
+.nav-parceiro-dropdown .arrow { font-size: 10px; margin-left: 5px; }
+
+.parceiro-dropdown-content {
+  position: absolute;
+  top: 60%; left: 0;
+  display: none;
+  gap: 20px;
+  padding: 20px 24px;
+  border-radius: 0 0 16px 16px;
+  justify-content: center;
+  z-index: 10;
+}
+.parceiro-dropdown-content a {
+  background: var(--green-brand);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .3s, transform .2s;
+}
+.parceiro-dropdown-content a:hover {
+  background: var(--green-cta);
+  transform: translateY(-2px);
+}
+.nav-parceiro-dropdown:hover .parceiro-dropdown-content { display: flex; }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero-wrapper {
+  position: relative;
+  display: flex; align-items: center;
+  height: 60vh; min-height: 450px;
+  padding: 0 70px;
+  color: var(--white);
+  background: url('/img/trigo3-1.jpg') center / cover no-repeat;
+}
+.hero-wrapper::before{
+  content:"";
+  position:absolute; inset:0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+}
+
+.hero-content{
+  position: relative; z-index: 1;
+  max-width: 1300px;
+  display: flex; flex-direction: column;
+  gap: 15px;
+}
+.hero-content h2{
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 50px; line-height: 1.1;
+  font-weight: 900;
+  text-shadow: 0 4px 6px rgba(0,0,0,.4);
+}
+.hero-content p{
+  margin: 0;
+  font-size: 24px; line-height: 1.5;
+}
+.hero-content p strong{ color: var(--gold-brand); font-weight: 700; }
+.hero-content .tagline{ font-weight: 600; margin-top: 10px; }
+
+.cta-buttons{
+  display: flex; gap: 5px; margin-top: 20px;
+}
+.cta-buttons a{
+  width: 250px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700;
+  border-radius: 10px;
+  text-decoration: none;
+  text-shadow: 0 2px 4px rgba(0,0,0,.25);
+  transition: transform .2s, background-color .2s;
+}
+.cta-buttons a:hover{ transform: translateY(-2px); }
+.cta-buttons .btn-primary{ background: var(--green-cta); color: #fff; border: 0; }
+.cta-buttons .btn-secondary{ background: transparent; color: #fff; border: 2px solid #fff; }
+
+/* ==========================================================================
+   OFERTAS
+   ========================================================================== */
+.offer-section{ padding: 50px 0; }
+
+.offer-header{
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.left-group{ display: flex; align-items: center; gap: 0; }
+.trigo{ width: 75px; height: 75px; flex-shrink: 0; z-index: 1; }
+
+.offer-title{
+  position: relative; z-index: 2;
+  margin: 0 0 0 -25px;
+  font-family: var(--font-heading);
+  font-size: 38px; font-weight: 600;
+  color: #1E5128; text-align: center;
+}
+
+/* Botão filtro */
+.filter-btn{
+  position: absolute; right: 20px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; align-items: center;
+  background: none; border: none;
+  color: #6b6b6b; font-size: 1.1rem; cursor: pointer;
+}
+.filter-btn img{ margin-left: 10px; width: 20px; height: 20px; }
+
+.offers-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.offer-card{ display:block; background:#fff; border:1px solid #eee; border-radius:12px; overflow:hidden; text-decoration:none; box-shadow:0 8px 18px rgba(0,0,0,.05); }
+.offer-img{ width:100%; height:140px; object-fit:cover; display:block; }
+.offer-info{ padding:12px; text-align:center; }
+.offer-price {
+  font-weight: 700;
+  font-size: 1.4em;
+  color: var(--green-text);
+}
+.offer-desc{ color:#555; font-size:14px; line-height:1.3; margin-bottom:10px; }
+.btn-details{ background:#e0c068; color:#243024; font-weight:800; border:none; border-radius:999px; padding:8px 12px; }
+
+.offer-card:hover{ transform: translateY(-5px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+
+
+.offer-card .offer-info{
+  flex-grow: 1;
+  padding: 20px;
+  display: flex; flex-direction: column;
+  text-align: center;
+}
+.offer-card .offer-price{
+  margin-bottom: 10px;
+  font-size: 28px; font-weight: 700;
+  color: var(--green-text);
+}
+
+
+
+.offer-card .offer-desc{
+  margin-bottom: 20px; flex-grow: 1;
+  font-size: 16px; color: var(--text-secondary);
+}
+.offer-card .btn-details{
+  padding: 12px;
+  background: var(--green-text);
+  color: #fff; border: 0; border-radius: 5px;
+  font-weight: 700; cursor: pointer;
+  transition: background-color .3s;
+}
+.offer-card .btn-details:hover{ background: var(--green-brand); }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.main-footer{
+  background: var(--text-primary);
+  color: #fff;
+  padding: 15px 20px;
+  flex-shrink: 0;
+}
+
+.footer-content{
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 10px;
+}
+
+.footer-logo{ font-size: 32px; font-weight: 700; }
+
+.footer-nav ul{
+  display: flex; justify-content: center; gap: 30px;
+  margin: 0; padding: 0;
+  list-style: none;
+}
+.footer-nav a{ color: #fff; text-decoration: none; }
+
+.copyright{
+  margin-top: 10px;
+  font-size: .9em; color: var(--text-secondary);
+}
+
+/* Social */
+.social-links{ display: flex; gap: 10px; }
+.social-links img{
+  width: 32px; height: 32px;
+  object-fit: contain;
+  transition: transform .2s;
+  display: block;
+}
+.social-links img:hover{ transform: scale(1.1); }
+/* ---------- ajustes gerais de densidade ---------- */
+.input { height: 38px; font-size: 15px; }         /* mais baixinho */
+.field { margin-bottom: 10px; }
+.label { font-size: 13px; color: var(--text-secondary); }
+
+/* títulos de seção dentro do formulário */
+.section-title {
+  margin: 12px 0 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,.06);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.label.strong { font-weight: 700; color: var(--text-primary); }
+

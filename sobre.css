@@ -1,0 +1,300 @@
+/* =========================================================
+   TRI-GO — Sobre Nós (CSS organizado)
+   ========================================================= */
+
+/* ----- Variáveis úteis ----- */
+:root{
+  /* ajuste para a cor real do seu rodapé */
+  --footer-bg: #1f1f1f;
+}
+
+/* =========================================================
+   SEÇÃO ABOUT (estrutura + cartão)
+   ========================================================= */
+.about{
+  padding: 48px 0 64px;
+  background: #F5F5F5; 
+}
+
+.about-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.about-content{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  background: #fff;                     
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  position: relative;
+}
+
+/* brilho ambiente MUITO sutil no card (opcional) */
+.fx-card{ overflow: hidden; }
+.fx-card::after{
+  content:"";
+  position:absolute; inset:-40%;
+  background:
+    radial-gradient(600px 280px at 20% 10%, rgba(224,192,104,.10), transparent 60%),
+    radial-gradient(500px 240px at 90% 90%, rgba(34,139,66,.10), transparent 60%);
+  animation: fxAmbient 18s linear infinite;
+  pointer-events:none; z-index:0;
+}
+.fx-card > *{ position: relative; z-index:1; }
+@keyframes fxAmbient{
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(2%, -2%, 0); }
+  100%{ transform: translate3d(0,0,0); }
+}
+
+/* colunas */
+.about-text   { flex: 1 1 55%; min-width: 300px; }
+.about-image  { flex: 1 1 40%; min-width: 260px; display:flex; align-items:center; justify-content:center; }
+
+/* imagem padrão (se usar <img>) */
+.about-image img{ width:100%; height:auto; display:block; border-radius:10px; }
+
+/* mídia antiga (se existir) */
+.about-media{
+  margin:0; border-radius:10px; overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.12);
+  border:1px solid var(--border-color);
+}
+.about-media img{ display:block; width:100%; height:100%; object-fit:cover; }
+
+/* =========================================================
+   TIPOGRAFIA / CONTEÚDO
+   ========================================================= */
+.about-kicker{
+  margin:0 0 10px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text-primary);
+}
+
+.about-text p,
+.about-text .about-highlight{
+  margin:0 0 12px;
+  color: var(--text-secondary);
+  font-size:16px;
+  line-height:1.7;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  hyphens: auto; -webkit-hyphens:auto; -ms-hyphens:auto;
+}
+.about-text strong{ color: var(--text-primary); position:relative; }
+
+/* sublinhado animado nos <strong> (aparece com .reveal) */
+.about-text strong::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-3px; height:2px;
+  background: linear-gradient(90deg, var(--green-brand, #228b42), var(--gold-brand, #e0c068));
+  transform: scaleX(0); transform-origin:left;
+  transition: transform .8s ease; opacity:.55; border-radius:2px;
+}
+
+/* lista com bullets dinâmicos */
+.about-text ul{ list-style:none; padding-left:0; margin:8px 0 14px; }
+.about-text ul li{
+  position:relative; padding-left:24px; margin:10px 0;
+  text-align: justify; text-justify: inter-word; text-align-last:left;
+  hyphens:auto;
+}
+.about-text ul li::before{
+  content:""; position:absolute; left:0; top:.6em;
+  width:12px; height:12px; border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 35%, #fff 0 40%, transparent 41%) padding-box,
+    linear-gradient(135deg, var(--green-brand,#228b42), var(--gold-brand,#e0c068));
+  border:1px solid rgba(0,0,0,.06);
+  animation: bulletPulse 2.8s ease-in-out infinite;
+}
+@keyframes bulletPulse{ 0%,100%{transform:scale(1);opacity:.9;} 50%{transform:scale(1.08);opacity:1;} }
+
+/* =========================================================
+   REVEAL (entrada suave no scroll)
+   ========================================================= */
+.reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible{ opacity:1; transform: none; }
+.about-kicker.reveal{ transition-delay:.05s; }
+.about-text p.reveal{ transition-delay:.12s; }
+.about-text .about-highlight.reveal{ transition-delay:.18s; }
+.about-text ul.reveal{ transition-delay:.22s; }
+.about-image.reveal{ transition-delay:.25s; }
+.reveal.is-visible strong::after{ transform: scaleX(1); }
+
+/* =========================================================
+   IMAGEM / VÍDEO (parallax e YouTube responsivo)
+   ========================================================= */
+.parallax img{
+  border-radius:12px;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
+  will-change: transform;
+}
+.parallax:hover img{
+  transform: perspective(1000px) rotateY(-3deg) rotateX(1deg) translateY(-2px) scale(1.02);
+  box-shadow:0 16px 36px rgba(0,0,0,.16);
+}
+
+/* wrapper para <iframe> do YouTube */
+.about-video-wrapper{
+  position:relative;
+  width:100%;
+  max-width:805px;             
+  aspect-ratio: 16 / 9;         
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+.about-video-wrapper iframe{
+  position:absolute; inset:0; width:100%; height:100%; border:none;
+}
+
+/* =========================================================
+   CARDS (Missão / Visão / Valores) + HOVER
+   ========================================================= */
+.about-cards{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(260px,1fr));
+  gap:22px;
+}
+.about-card{
+  position:relative;
+  background:#fff;
+  border-radius:14px;
+  padding:22px 20px 24px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    box-shadow .35s ease,
+    border-color .35s ease,
+    background-color .35s ease;
+  transform:translateZ(0);
+  outline:none;
+}
+/* barrinha no topo */
+.about-card::before{
+  content:""; position:absolute; left:-1px; top:-1px; right:-1px; height:4px;
+  border-top-left-radius:14px; border-top-right-radius:14px;
+  background:linear-gradient(90deg, var(--gold-brand,#e0c068), var(--green-brand,#228b42));
+  opacity:.85;
+}
+/* glow no hover */
+.about-card::after{
+  content:""; position:absolute; inset:auto 12% -14px 12%;
+  height:28px; border-radius:999px;
+  background:linear-gradient(90deg, transparent, rgba(224,192,104,.35), rgba(34,139,66,.35), transparent);
+  filter:blur(12px); opacity:0; transition:opacity .35s ease; pointer-events:none;
+}
+.about-card:hover,
+.about-card:focus-visible{
+  transform: translateY(-6px) scale(1.01) rotateX(.4deg) rotateY(-.4deg);
+  box-shadow: 0 14px 32px rgba(0,0,0,.12);
+  border-color: rgba(224,192,104,.85);
+}
+.about-card:hover::after,
+.about-card:focus-visible::after{ opacity:1; }
+
+/* títulos dos cards */
+.about-card-title{
+  margin:0 0 10px;
+  font-family:var(--font-heading);
+  font-weight:800;
+  color:var(--text-primary,#2b2b2b);
+  letter-spacing:.3px;
+}
+.about-card-title::after{
+  content:""; display:block; width:42px; height:3px; margin-top:8px;
+  background:linear-gradient(90deg, var(--green-brand,#228b42), var(--gold-brand,#e0c068));
+  border-radius:2px; opacity:.65;
+}
+.about-card p{ color:var(--text-secondary); line-height:1.6; margin:0 0 8px; }
+.about-card-lead{ color:var(--text-primary); margin-bottom:4px; }
+.about-values{ margin:6px 0 0; padding-left:18px; color:var(--text-secondary); line-height:1.6; }
+
+/* =========================================================
+   CTA FINAL + Fade pro rodapé
+   ========================================================= */
+.about-cta{
+  position: relative;
+  margin-bottom: 2px;
+  padding-bottom: 0;
+}
+.about-cta__inner{
+  position: relative; z-index: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.06);
+}
+/* borda gradiente apenas no contorno */
+.about-cta__inner::before{
+  content:""; position:absolute; inset:0; padding:1px; border-radius:14px;
+  opacity:.20; pointer-events:none;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+/* fade cobrindo a base e sumindo no rodapé */
+.about-cta::after{
+  content:"";
+  position:absolute; left:0; right:0;
+  top: calc(100% - 36px);   /* começa dentro do CTA pra cobrir a linha */
+  height: 140px;
+
+  pointer-events:none; z-index:0;
+}
+
+/* CTA conteúdos */
+.about-cta__title{
+  margin:0 0 8px;
+  font: 800 clamp(20px,3vw,28px)/1.25 var(--font-heading, inherit);
+  color: var(--text-primary,#2b2b2b);
+}
+.about-cta__sub{ margin:0 0 16px; color: var(--text-secondary,#505050); line-height:1.6; }
+.about-cta__actions{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+.btn-cta{
+  display:inline-block; padding:10px 16px; border-radius:999px; font-weight:700;
+  border:1px solid rgba(0,0,0,.08); text-decoration:none;
+  background: linear-gradient(90deg, var(--green-brand,#228b42), #3fce7a); color:#fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.btn-cta--alt{ background: linear-gradient(90deg, var(--gold-brand,#e0c068), #f0d489); color:#233328; }
+.btn-cta:hover{ transform: translateY(-2px); box-shadow:0 10px 20px rgba(0,0,0,.14); }
+.about-cta__highlights{ display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 0; padding:0; list-style:none; }
+.about-cta__highlights li{
+  padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;
+  border:1px solid rgba(0,0,0,.06);
+  background: linear-gradient(90deg, rgba(34,139,66,.10), rgba(224,192,104,.10));
+  color: var(--text-primary,#2b2b2b);
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width:1024px){
+  .about-content{ padding:22px; }
+  .about-cards{ grid-template-columns:1fr; }
+}
+
+/* =========================================================
+   ACESSIBILIDADE — reduz movimento
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  .fx-card::after,
+  .parallax:hover img{ animation:none!important; transform:none!important; }
+  .reveal{ transition:none!important; opacity:1!important; transform:none!important; }
+  .about-card,
+  .about-card::after{ transition:none!important; }
+  .about-card:hover,
+  .about-card:focus-visible{ transform:none!important; }
+}

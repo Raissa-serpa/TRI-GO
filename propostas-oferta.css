@@ -1,0 +1,312 @@
+/* ============================================================
+   TRI-GO • Modais (Frete + Proposta) — versão enxuta e corrigida
+============================================================ */
+
+:root{
+  --tg-green: #1f6d3d;
+  --tg-green-600:#185a32;
+  --tg-gold:  #d4b25c;
+  --tg-text:  #1e293b;
+  --tg-muted: #64748b;
+  --tg-border:#e5e7eb;
+  --tg-card:  #ffffff;
+  --tg-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+
+/* ===== Wrapper e diálogo ===== */
+.tg-modal{
+  position: fixed; inset: 0;
+  display: grid; place-items: center;
+  padding: 24px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  transition: opacity .25s ease;
+}
+.tg-modal[aria-hidden="true"]{ opacity:0; pointer-events:none; }
+
+.tg-modal__dialog{
+  width: min(980px, 100%);
+  background: var(--tg-card);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 22px;
+  box-shadow: var(--tg-shadow);
+  transform: translateY(8px) scale(.98);
+  transition: transform .25s ease, opacity .25s ease;
+  opacity: 1;
+  overflow: hidden;
+}
+.tg-modal[aria-hidden="true"] .tg-modal__dialog{
+  transform: translateY(10px) scale(.98);
+  opacity: .85;
+}
+#modal-proposta .tg-modal__dialog{ width: min(760px, 100%); }
+
+/* ===== Cabeçalho ===== */
+.tg-modal__head{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 18px 22px 8px;
+}
+.tg-back{
+  border:0; background:none; cursor:pointer;
+  color: var(--tg-green); font-weight: 700;
+}
+.tg-modal__head h2{
+  margin:0; text-align:center; letter-spacing:.02em;
+  font-weight: 700; color: var(--tg-text);
+}
+.tg-modal__close{
+  width: 36px; height: 36px;
+  border-radius: 12px;
+  border: 1px solid var(--tg-border);
+  background: #fff;
+  display:grid; place-items:center;
+  cursor: pointer;
+}
+.tg-sep{
+  border: 0; height: 1px;
+  background: var(--tg-border);
+  margin: 0 22px 8px;
+}
+
+/* ===== Form / Grid ===== */
+.tg-form, #form-frete{ padding: 8px 22px 22px; }
+
+.tg-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+  align-items: start;
+}
+#modal-proposta .tg-grid{ grid-template-columns: 1fr 1fr; }
+
+/* Grid do FRETE: 4 colunas robusto (CEP 2 | Rua 1 | Nº 1 / Bairro 2 | Cidade 1 | Estado 1) */
+#form-frete .tg-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  grid-template-areas:
+    "cep cep rua num"
+    "bairro bairro cidade uf"; /* Estado (uf) sobe pra mesma linha da Cidade */
+  gap: 10px 12px; /* mantém o espaçamento atual */
+
+}
+
+#form-frete .tg-grid > label{ grid-area: auto; grid-column: auto; grid-row: auto; }
+
+#form-frete .tg-grid label:has(#frete-cep){    grid-area: cep; }
+#form-frete .tg-grid label:has(#frete-rua){    grid-area: rua; }
+#form-frete .tg-grid label:has(#frete-num){    grid-area: num; }
+#form-frete .tg-grid label:has(#frete-bairro){ grid-area: bairro; }
+#form-frete .tg-grid label:has(#frete-cidade){ grid-area: cidade; }
+#form-frete .tg-grid label:has(#frete-uf){     grid-area: uf; }
+
+
+@media (max-width: 900px){
+  .tg-grid, #form-frete .tg-grid{ grid-template-columns: 1fr; }
+  #form-frete .tg-grid > label{ grid-column: 1/-1 !important; }
+}
+
+/* Labels e hints */
+.tg-grid > label{
+  display: grid;
+  gap: 8px;
+  color: var(--tg-text);
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.tg-grid small.tg-hint{
+  display:block; margin-top: 6px; color: var(--tg-muted); font-weight: 500;
+}
+
+/* ===== Campos (exclui radio/checkbox) ===== */
+.tg-form input:not([type="radio"]):not([type="checkbox"]),
+.tg-form textarea,
+.tg-form select,
+#form-frete input:not([type="radio"]):not([type="checkbox"]),
+#form-frete textarea,
+#form-frete select{
+  width: 100%;
+  border: 1.5px solid var(--tg-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  outline: none;
+  font-size: 16px;
+  background: #fff;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.tg-form textarea, #form-frete textarea{ min-height: 96px; resize: vertical; }
+
+.tg-form input:focus,
+.tg-form textarea:focus,
+.tg-form select:focus,
+#form-frete input:focus,
+#form-frete textarea:focus,
+#form-frete select:focus{
+  border-color: var(--tg-green);
+  box-shadow: 0 0 0 3px rgba(31,109,61,.15);
+}
+
+/* ===== Radios bonitinhos ===== */
+.tg-inline{ display: flex; gap: 18px; align-items: center; }
+.tg-radio{ display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+
+#form-frete input[type="radio"],
+#modal-proposta input[type="radio"]{
+  width: 18px; height: 18px;
+  margin: 0; padding: 0; border: 0; background: transparent;
+  box-shadow: none; accent-color: var(--tg-gold); vertical-align: middle;
+}
+
+/* ===== Cards/Side ===== */
+.tg-left.tg-card{
+  border: 1px solid var(--tg-border);
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+}
+.tg-card__title{ font-weight: 700; margin-bottom: 10px; color: var(--tg-text); }
+
+.tg-right .tg-resumo__linha{
+  display:flex; justify-content: space-between; align-items:center;
+  padding: 8px 0; color: var(--tg-text);
+}
+.tg-total-row{
+  display:flex; justify-content: space-between; align-items:center;
+  padding: 16px 0; border-top: 1px dashed var(--tg-border); margin-top: 8px;
+}
+.tg-total-val{ font-size: 1.6rem; color: var(--tg-green); font-weight: 800; }
+
+/* ===== Ações / Botões ===== */
+.tg-actions{ display:flex; gap: 12px; }
+.tg-actions .btn{ flex: 1; }
+
+.btn{
+  border:0; cursor:pointer;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+
+.btn-success{
+  background: var(--tg-green);
+  color:#fff;
+  box-shadow: 0 8px 16px rgba(31,109,61,.18);
+}
+.btn-success:hover{ background: var(--tg-green-600); }
+
+.btn-ghost{
+  background: #f8fafc;
+  color: var(--tg-text);
+  border: 1px solid var(--tg-border);
+}
+
+/* Notas e utilitários */
+.tg-note{ color: var(--tg-muted); }
+body.modal-open{ overflow: hidden; }
+
+/* ===== Toolbar/Badges da página de propostas (se usar) ===== */
+.props-toolbar{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin: 8px 0 12px; }
+.props-title{ margin:0; }
+.pill{ padding:6px 10px; border-radius:999px; border:1px solid #eee; background:#f8f8f8; font-weight:800; color:#374151; font-size:13px; }
+
+.status-badge{ display:inline-block; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:800; border:1px solid #eee; background:#fff; margin-left:8px; }
+.status-CONTRA_PROPOSTA{ background:#fff9eb; border-color:#f6e3b2; color:#7a5a00; }
+.status-PENDENTE{ background:#f5fdf4; border-color:rgba(30,124,59,.2); color:#1e7c3b; }
+.status-ACEITA{ background:#eaf8ee; border-color:rgba(30,124,59,.25); color:#1e7c3b; }
+.status-RECUSADA{ background:#ffecec; border-color:#ffc8c8; color:#b11; }
+
+/* ===== Modal de renegociação (se usar) ===== */
+.modal-ctr{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.35); z-index:50; }
+.modal-ctr.is-open{ display:flex; }
+.modal-box{ width:min(520px,90vw); background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:14px; box-shadow:0 18px 40px rgba(0,0,0,.18); padding:16px; }
+.modal-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.modal-head h3{ margin:0; font:800 16px/1.2 var(--font-heading,inherit); }
+.modal-close{ background:transparent; border:0; font-size:20px; line-height:1; cursor:pointer; }
+.form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+.form-grid .full{ grid-column: 1/-1; }
+.field label{ display:block; font-weight:800; margin-bottom:6px; color:#2b2b2b; }
+.field input, .field textarea, .field select{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #e5e7eb; background:#fff; color:#111827; }
+.modal-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top:12px; }
+.btn-primary{ background: linear-gradient(90deg, var(--tg-green), #3fce7a); color:#fff; border:1px solid rgba(0,0,0,.06); border-radius:999px; padding:10px 16px; }
+
+/* ===== FRETE • compacto (versão final clean) ===== */
+#modal-frete .tg-modal__dialog{
+  width: min(760px, 88vw);
+  max-height: 86vh;          /* um pouco mais confortável p/ rolagem */
+  overflow: auto;
+}
+
+/* Cabeçalho enxuto */
+#modal-frete .tg-modal__head{ padding: 10px 16px 6px; }
+#modal-frete .tg-modal__head h2{ font-size: 1.45rem; letter-spacing: .01em; }
+#modal-frete .tg-sep{ margin: 0 16px 6px; }
+
+/* Grid primeira faixa (endereços) */
+#form-frete .tg-grid{ gap: 10px 12px; }
+
+/* Duas colunas: Condições x Resumo */
+#modal-frete .tg-layout{
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 14px 18px;
+  align-items: start;
+}
+
+/* Card das condições (esquerda) */
+#modal-frete .tg-left.tg-card{
+  padding: 10px 12px;
+  border-radius: 14px;
+  border-color: #eef1f4;
+  background: #fff;
+}
+#modal-frete .tg-left .tg-card__title{ font-size: 1.15rem; margin-bottom: 6px; }
+
+/* Resumo (direita) */
+#modal-frete .tg-right{
+  border-left: 2px solid #efdfc6;   /* tom areia */
+  padding-left: 16px;
+  margin-top: 2px;                  /* alinha com topo do card esquerdo */
+}
+#modal-frete .tg-right .tg-resumo__linha{ padding: 5px 0; }
+#modal-frete .tg-total-row{ padding: 12px 0; border-top: 1px dashed #e9ecef; }
+#modal-frete .tg-right .tg-total-val{ font-size: 1.28rem; color: var(--tg-green); font-weight: 800; }
+
+/* Controles */
+#modal-frete input[type="radio"]{ width: 16px; height: 16px; }
+#modal-frete .tg-left .tg-radio{ margin: 2px 0; }
+#modal-frete select,
+#modal-frete input:not([type="radio"]):not([type="checkbox"]){
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+/* Ações: botões flexíveis e sem “invadir” a coluna esquerda */
+#modal-frete .tg-actions{
+  display:flex; justify-content:flex-end; gap:10px; flex-wrap:wrap; width:100%;
+}
+#modal-frete .tg-actions .btn{
+  flex: 1 1 240px;           /* pode encolher ou quebrar linha */
+  max-width: 100%;
+  white-space: normal;       /* permite 2 linhas no label */
+  padding: 10px 14px;
+  font-size: .92rem;
+  border-radius: 14px;
+}
+#btn-calc-frete{ font-weight: 800; }
+#modal-frete .btn-success{ box-shadow: 0 6px 12px rgba(31,109,61,.16); }
+#modal-frete .btn-ghost{ background: #f6f8fb; }
+
+/* Mobile */
+@media (max-width: 900px){
+  #modal-frete .tg-modal__dialog{ width: min(640px, 94vw); }
+  #modal-frete .tg-layout{ grid-template-columns: 1fr; }
+  #modal-frete .tg-right{ border-left: 0; padding-left: 0; margin-top: 0; }
+  #modal-frete .tg-actions .btn{ flex: 1 1 100%; }
+}

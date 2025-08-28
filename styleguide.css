@@ -1,0 +1,33 @@
+:root {
+  /* Cores */
+  --gold-brand: rgba(224, 192, 104, 1);
+  --green-brand: rgba(34, 139, 66, 1);
+  --green-text: rgba(30, 81, 40, 1);
+  --green-cta: rgba(60, 191, 97, 1);
+  --text-primary: rgba(43, 43, 43, 1);
+  --text-secondary: rgba(94, 94, 94, 1);
+  --border-color: rgba(210, 180, 140, 1);
+  --white: rgba(255, 255, 255, 1);
+
+  /* Fontes (do seu style guide) */
+  --headings-1-font-family: "Segoe UI", Helvetica;
+  --headings-1-font-weight: 700;
+  --headings-1-font-size: 64px;
+  --headings-1-line-height: normal;
+  --headings-2-font-family: "Segoe UI", Helvetica;
+  --headings-2-font-weight: 400;
+  --headings-2-font-size: 32px;
+  --headings-2-line-height: normal;
+  --sub-headings-font-family: "Segoe UI", Helvetica;
+  --sub-headings-font-weight: 400;
+  --sub-headings-font-size: 28px;
+  --sub-headings-line-height: normal;
+  --text-content-1-font-family: "Segoe UI", Helvetica;
+  --text-content-1-font-weight: 400;
+  --text-content-1-font-size: 16px;
+  --text-content-1-line-height: normal;
+  --subtext-content-1-font-family: "Segoe UI", Helvetica;
+  --subtext-content-1-font-weight: 300;
+  --subtext-content-1-font-size: 14px;
+  --subtext-content-1-line-height: normal;
+}

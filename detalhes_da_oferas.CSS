@@ -1,0 +1,22 @@
+.aside-card{
+  background:#fff; border:1px solid #eee; border-radius:12px;
+  padding:14px; box-shadow:0 8px 18px rgba(0,0,0,.05);
+}
+.aside-title{
+  text-align:center; font-weight:800; color:#2b2b2b; margin-bottom:6px;
+}
+.mini-offer-card{
+  text-align:center; background:#fff; border:1px solid #eee; border-radius:12px;
+  padding:12px; box-shadow:0 6px 14px rgba(0,0,0,.06); margin:10px 0;
+}
+.mini-price{
+  color:#1e7c3b; font-weight:800; font-size:20px; margin:6px 0;
+}
+.mini-desc{
+  color:#555; font-size:14px; line-height:1.35; margin-bottom:10px;
+}
+.mini-btn{
+  display:inline-block; background:#e0c068; color:#26321f; font-weight:800;
+  border-radius:999px; padding:8px 14px; text-decoration:none;
+}
+.mini-btn:hover{ filter:brightness(.95); }
