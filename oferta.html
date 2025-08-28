@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRI-GO - Oferta</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/styleguide.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/modal.css" />
+  <link rel="stylesheet" href="assets/css/offer.css" />
+  <link rel="stylesheet" href="assets/css/frete.css" />
+  <link rel="stylesheet" href="assets/css/propostas-oferta.css" />
+</head>
+
+<body>
+  <div class="container-wrapper">
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">
+          <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" alt="TRI-GO Logo" class="logo-image" />
+          <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="contact_us.html">Fale Conosco</a></li>
+            <li><a href="sobre.html">Quem Somos</a></li>
+            <li class="nav-parceiro-dropdown"></li>
+          </ul>
+        </nav>
+
+        <div class="dropdown">
+          <button class="dropbtn" data-open-auth="login">Entrar <span class="arrow">&#9662;</span></button>
+          <div class="dropdown-content">
+            <a href="#" data-open-auth="register">REGISTRAR</a>
+            <a href="#" data-open-auth="login">ENTRAR</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="offer-container">
+      <a class="offer-back" href="index.html">← Voltar</a>
+
+      <div class="offer-grid">
+        <!-- ESQUERDA: oferta principal -->
+        <section class="offer-main card">
+          <div class="offer-hero">
+            <img id="offer-img" class="offer-img" src="img/Rectangle 160.png" alt="Imagem da oferta" />
+            <div>
+              <h2 id="offer-nome" class="offer-title">Tipo de Trigo</h2>
+
+              <!-- ======== RESUMO DA OFERTA ======== -->
+              <div class="offer-summary">
+                <h3 class="offer-kind">Tipo de Trigo</h3>
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/CALENDAR.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-label">Safra</span>
+                    <span class="spec-value" id="spec-safra">—</span>
+                  </div>
+                </div>
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/cultivar.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-label">Cultivar</span>
+                    <span class="spec-value" id="spec-cultivar">—</span>
+                  </div>
+                </div>
+
+                <div class="lab-box">
+                  <div class="lab-line">
+                    <span class="lab-k">Teor de Umidade:</span>
+                    <b id="lab-umid">—</b>
+                    <span class="lab-k">PH</span>
+                    <b id="lab-ph">—</b>
+                    <span class="lab-k">Falling Number</span>
+                    <b id="lab-fn">—</b><span class="lab-muted">seg</span>
+                  </div>
+
+                  <div class="lab-line">
+                    <span class="lab-k">Impurezas</span>
+                    <b id="lab-imp">—</b>
+                    <span class="lab-k">W</span>
+                    <b id="lab-w">—</b>
+                    <span class="lab-k">DON</span>
+                    <b id="lab-don">—</b>
+                    <span class="lab-k">PPB</span>
+                  </div>
+
+                  <div class="lab-line">
+                    <span class="lab-k">Teor de Proteína</span>
+                    <b id="lab-prot">—</b>
+                    <span class="lab-muted">%</span>
+                  </div>
+                </div>
+
+                <hr class="spec-divider" />
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/peso.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-note" id="spec-volume">Volume máximo em tonelada</span>
+                  </div>
+                </div>
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/localização.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-note" id="spec-loc">Localização da carga - endereço completo</span>
+                  </div>
+                </div>
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/valor.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-note" id="spec-valor">Valor em Tonelada</span>
+                  </div>
+                </div>
+
+                <div class="spec-row">
+                  <img class="spec-ico" src="img/condicao.svg" alt="" />
+                  <div class="spec-col">
+                    <span class="spec-note" id="spec-cond">Condição: FOB CIF</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="offer-divider" />
+
+          <div class="offer-pricebar">
+            <span id="offer-price">R$ 0,00</span>
+            <small id="offer-unidade">(unidade)</small>
+          </div>
+
+          <h3 class="offer-cta-title">Gostou da Oferta?</h3>
+          <div class="offer-cta-actions">
+            <button id="btn-open-frete" class="offer-btn offer-btn--frete">Quero Simular o FRETE!</button>
+            <a id="btn-proposta" class="offer-btn offer-btn--prop" href="#">Quero Realizar uma PROPOSTA!</a>
+          </div>
+        </section>
+
+        <!-- DIREITA -->
+        <aside class="offer-sidebar">
+          <div class="side-card card">
+            <h4 class="side-title">Onde Encontrar</h4>
+            <div class="map-embed">
+              <iframe id="map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src=""></iframe>
+            </div>
+          </div>
+
+          <div class="side-card card">
+            <h4 class="side-title">Outras Ofertas</h4>
+            <div id="ALL_OFFERS"></div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+      <div class="container footer-content">
+        <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+        <nav class="footer-nav">
+          <ul>
+            <li><a href="contact_us.html">Fale Conosco</a></li>
+            <li><a href="sobre.html">Quem Somos</a></li>
+            <li><a href="#">Quero Ser um Parceiro</a></li>
+            <li><a href="#" data-open-auth="login">Entre</a></li>
+          </ul>
+        </nav>
+        <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Raiz de modais (usada pelo app/modal.js para login, etc) -->
+  <div id="modal-root"></div>
+
+  <!-- App principal (abre modal de login/registro) -->
+  <script type="module" src="assets/js/app.js"></script>
+
+  <!-- Geocoder/CEP (já existente) -->
+  <script>
+    let geocoder, debounceTimer;
+    function initMaps(){ geocoder = new google.maps.Geocoder(); }
+
+    document.addEventListener('input', (e)=>{
+      const el = e.target;
+      if (!el.matches('input[name="cep"]')) return;
+      const digits = el.value.replace(/\D/g, '').slice(0, 8);
+      el.value = digits.replace(/^(\d{5})(\d{0,3}).*/,(_,a,b)=>(b?`${a}-${b}`:a));
+      clearTimeout(debounceTimer);
+      if (digits.length===8){ debounceTimer=setTimeout(()=>geocodeCEP(digits),250); }
+      else { fillAddress({ logradouro:'', bairro:'', cidade:'', uf:'' }); }
+    });
+
+    function geocodeCEP(cep){
+      if (!geocoder || !/^\d{8}$/.test(cep)) return;
+      geocoder.geocode({ address: cep, componentRestrictions:{ country:'BR' }},
+        (results, status)=>{
+          if (status!=='OK' || !results?.length) return;
+          const comps = results[0].address_components;
+          const get=(...types)=>{ const c=comps.find(x=>types.some(t=>x.types.includes(t)));
+            return c?{long:c.long_name,short:c.short_name}:{long:'',short:''}; };
+          const route=get('route').long;
+          const number=get('street_number').long;
+          const bairro=get('sublocality_level_1','sublocality','neighborhood','political').long;
+          const cidade=get('administrative_area_level_2','locality').long;
+          const uf=get('administrative_area_level_1').short;
+          fillAddress({ logradouro:[route,number].filter(Boolean).join(', '), bairro, cidade, uf });
+        });
+    }
+    function fillAddress({logradouro,bairro,cidade,uf}){
+      const set=(sel,val)=>{ const el=document.querySelector(sel); if (el) el.value=val||''; };
+      set('input[name="logradouro"]', logradouro);
+      set('input[name="bairro"]', bairro);
+      set('input[name="cidade"]', cidade);
+      set('input[name="uf"]', uf);
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM0_zfY0C026BnwXSuTFbjgKXhSv8Wgo4&callback=initMaps" async defer></script>
+
+  <!-- Store + seed + init -->
+  <script src="assets/js/offers-store.js"></script>
+  <script src="assets/js/offers-seed.js"></script>
+  <script>
+    OffersStore.init({ seedFixedOffers: SEED_EXEMPLO });
+  </script>
+
+  <!-- Preenche a oferta e prepara o botão do modal de proposta -->
+  <script>
+  (() => {
+    const qs = s => document.querySelector(s);
+    const id = new URLSearchParams(location.search).get('id');
+
+    const brl = v => (v==null || isNaN(v))
+      ? '—'
+      : new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' }).format(Number(v));
+
+    // pega a oferta pelo id; fallback para a 1ª aberta
+    const offer = OffersStore.getById(id) || OffersStore.list({ type:'sell', status:'open' })[0];
+    if (!offer) return;
+
+    // título + imagem
+    qs('#offer-img').src = offer.meta?.img || 'img/Rectangle 160.png';
+    qs('#offer-img').alt = offer.title || offer.cultivar || 'Oferta de Trigo';
+    const titleClean = offer.cultivar
+      || (offer.title ? offer.title.split('•')[0].trim() : '')
+      || 'Trigo';
+    qs('#offer-nome').textContent = titleClean;
+
+    // Tipo de trigo
+    const kindEl = document.querySelector('.offer-kind');
+    if (kindEl) kindEl.textContent = offer.meta?.wheat_type || 'Trigo';
+
+    // Volume máximo
+    const volEl = document.getElementById('spec-volume');
+    if (volEl) volEl.textContent = `Volume máximo: ${offer.quantity_ton} ton`;
+
+    // Valor por tonelada
+    const valEl = document.getElementById('spec-valor');
+    if (valEl) valEl.textContent = `Valor: ${brl(offer.price_per_ton)} por tonelada`;
+
+    // Condição
+    const condEl = document.getElementById('spec-cond');
+    if (condEl) condEl.textContent = `Condição: ${offer.incoterm || 'FOB'}`;
+
+    // specs
+    qs('#spec-safra').textContent = offer.harvest ?? '—';
+    qs('#spec-cultivar').textContent = offer.cultivar ?? '—';
+    qs('#lab-umid').textContent = offer.specs?.moisture ?? '—';
+    qs('#lab-ph').textContent   = offer.specs?.ph ?? '—';
+    qs('#lab-fn').textContent   = offer.meta?.falling_number ?? '—';
+    qs('#lab-imp').textContent  = offer.meta?.impurezas ?? '—';
+    qs('#lab-w').textContent    = offer.meta?.w ?? '—';
+    qs('#lab-don').textContent  = offer.specs?.don ?? '—';
+    qs('#lab-prot').textContent = offer.specs?.protein ?? '—';
+
+    // preço, condição, localização
+    qs('#offer-price').textContent = brl(offer.price_per_ton);
+    qs('#offer-unidade').textContent = ' / tonelada';
+    qs('#spec-cond').textContent = `Condição: ${offer.incoterm || 'FOB'}`;
+
+    const locTxt = offer.meta?.endereco
+                || [offer.location?.city, offer.location?.uf].filter(Boolean).join(' - ')
+                || '—';
+    qs('#spec-loc').textContent = locTxt;
+
+    // mapa
+    const map = qs('#map-iframe');
+    if (map) map.src = `https://www.google.com/maps?q=${encodeURIComponent(locTxt)}&output=embed`;
+
+    // outras ofertas
+    const other = OffersStore.list({ type:'sell', status:'open' })
+                   .filter(o => o.id !== offer.id).slice(0, 6);
+    const otherHtml = other.map(o => `
+      <a class="offer-card small" href="oferta.html?id=${encodeURIComponent(o.id)}">
+        <img src="${o.meta?.img || 'img/Rectangle 160.png'}" alt="">
+        <div class="offer-info">
+          <div class="offer-price">${brl(o.price_per_ton)} <span class="price-unit">/ tonelada</span></div>
+          <div class="offer-desc">${o.cultivar || 'Trigo'} • Lote: ${o.quantity_ton} ton</div>
+        </div>
+      </a>
+    `).join('');
+    const box = document.querySelector('#ALL_OFFERS');
+    if (box) box.innerHTML = otherHtml || '<div class="empty">Sem outras ofertas.</div>';
+
+    // expõe dados para o simulador de frete
+    window.TGOFERTA = {
+      volumeTon: offer.quantity_ton,
+      origemTexto: locTxt,
+      origemCep: offer.meta?.cep || ''
+    };
+
+    // botão de proposta abre modal (sem navegar)
+    const btnProp = document.querySelector('#btn-proposta');
+    if (btnProp) {
+      btnProp.setAttribute('href', '#');
+      btnProp.dataset.openProposta = offer.id;
+    }
+  })();
+  </script>
+
+  <!-- MODAL FRETE -->
+  <div id="modal-frete" class="tg-modal" aria-hidden="true" role="dialog" aria-labelledby="tg-frete-title">
+    <div class="tg-modal__dialog">
+      <div class="tg-modal__head">
+        <button class="tg-back" type="button" data-close>‹ Voltar</button>
+        <h2 id="tg-frete-title">SIMULADOR DE FRETE</h2>
+        <button class="tg-modal__close" aria-label="Fechar" data-close>×</button>
+      </div>
+      <hr class="tg-sep" />
+
+      <form id="form-frete" autocomplete="on">
+        <div class="tg-grid">
+          <label>CEP <input id="frete-cep" name="cep" inputmode="numeric" maxlength="9" placeholder="Pré-preenchido login" /></label>
+          <label>Rua <input id="frete-rua" name="logradouro" /></label>
+          <label>Nº <input id="frete-num" name="numero" inputmode="numeric" /></label>
+          <label>Bairro <input id="frete-bairro" name="bairro" /></label>
+          <br/><br/>
+          <label>Cidade <input id="frete-cidade" name="cidade" /></label>
+          <label>Estado <input id="frete-uf" name="uf" maxlength="2" /></label>
+        </div>
+
+        <div class="tg-layout">
+          <div class="tg-left tg-card">
+            <div class="tg-card__title">CONDIÇÕES</div>
+            <label class="tg-radio"><input type="radio" name="prazo" value="21" checked><span>Previsão de entrega: até 21 dias</span></label>
+            <label class="tg-radio"><input type="radio" name="prazo" value="15"><span>Previsão de entrega: até 15 dias</span></label>
+            <label class="tg-radio"><input type="radio" name="prazo" value="8"><span>Previsão de entrega: até 8 dias</span></label>
+            <div class="mt-1">
+              <label>Tipo de caminhão <select id="frete-truck"></select></label>
+            </div>
+          </div>
+
+          <div class="tg-right">
+            <div class="tg-resumo__linha"><span>Distância estimada:</span><strong id="frete-dist">0 km</strong></div>
+            <div class="tg-resumo__linha"><span>Faixa aplicada:</span><strong id="frete-faixa">0-50 km</strong></div>
+            <div class="tg-total-row"><span>Valor Total:</span><strong id="frete-total" class="tg-total-val">R$ 0,00</strong></div>
+            <p class="tg-note">A simulação é uma estimativa. O valor final pode variar conforme contrato, volume, tipo de carga, rota e prazos acordados entre as partes.</p>
+            <div class="tg-actions">
+              <button type="button" id="btn-calc-frete" class="btn btn-success btn-lg">SIMULAR FRETE DESTA OFERTA</button>
+              <button type="button" id="btn-modal-gerar" class="btn btn-ghost btn-lg" disabled>GERAR CONTRATO</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL PROPOSTA -->
+  <div id="modal-proposta" class="tg-modal" aria-hidden="true" role="dialog" aria-labelledby="tg-proposta-title">
+    <div class="tg-modal__dialog">
+      <div class="tg-modal__head">
+        <button class="tg-back" type="button" data-close>‹ Voltar</button>
+        <h2 id="tg-proposta-title">REALIZAR UMA PROPOSTA</h2>
+        <button class="tg-modal__close" aria-label="Fechar" data-close>×</button>
+      </div>
+      <hr class="tg-sep" />
+
+      <form id="form-proposta" autocomplete="off" class="tg-form">
+        <div class="tg-grid">
+          <label>VOLUME DESEJADO:
+            <input id="prop-volume" name="volume" inputmode="decimal" placeholder="Em toneladas" required />
+            <small id="prop-max" class="tg-hint"></small>
+          </label>
+
+          <label>PRAZO:
+            <input id="prop-prazo" name="prazo" placeholder="De entrega, conforme o frete" />
+          </label>
+
+          <label>CONDIÇÃO:
+            <div class="tg-inline">
+              <label class="tg-radio"><input type="radio" name="cond" value="FOB"><span>FOB</span></label>
+              <label class="tg-radio"><input type="radio" name="cond" value="CIF"><span>CIF</span></label>
+            </div>
+          </label>
+
+          <label>VALOR (R$/t):
+            <input id="prop-preco" name="preco" inputmode="decimal" placeholder="Em reais" required />
+            <small id="prop-ref" class="tg-hint"></small>
+          </label>
+
+          <label>OBSERVAÇÕES (opcional):
+            <textarea id="prop-msg" rows="3" placeholder="Ex.: retirada em 7 dias, janela de carregamento, etc."></textarea>
+          </label>
+        </div>
+
+        <div class="tg-actions mt-2">
+          <button type="submit" class="btn btn-success btn-lg">ENVIAR</button>
+        </div>
+
+        <p id="prop-feedback" class="tg-note" style="display:none;margin-top:12px;"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS do modal FRETE (abrir/fechar) -->
+  <script>
+  (() => {
+    const modal = document.getElementById('modal-frete');
+    const openBtn = document.getElementById('btn-open-frete');
+
+    openBtn?.addEventListener('click', () => {
+      modal?.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+    });
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target.matches('[data-close], .tg-modal')) {
+        modal.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') {
+        modal.setAttribute('aria-hidden', 'true');
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+      }
+    });
+  })();
+  </script>
+
+  <!-- JS do modal PROPOSTA (abre, valida e salva proposta) -->
+  <script>
+  (() => {
+    const qs  = s => document.querySelector(s);
+    const qsa = s => Array.from(document.querySelectorAll(s));
+    const getParam = k => new URLSearchParams(location.search).get(k);
+
+    const toNumber = (v) => {
+      if (v == null) return null;
+      const s = String(v).trim().replace(/\./g, '').replace(',', '.');
+      const n = parseFloat(s);
+      return Number.isFinite(n) ? n : null;
+    };
+    const brl = v => (v==null || isNaN(v))
+      ? '—'
+      : new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(v));
+
+    const id = getParam('id');
+    const offer = OffersStore.getById(id) || OffersStore.list({ type:'sell', status:'open' })[0];
+    if (!offer) return;
+
+    const modal     = qs('#modal-proposta');
+    const openBtn   = qs('#btn-proposta');
+    const form      = qs('#form-proposta');
+    const fVolume   = qs('#prop-volume');
+    const fPrazo    = qs('#prop-prazo');
+    const fPreco    = qs('#prop-preco');
+    const fMsg      = qs('#prop-msg');
+    const fdb       = qs('#prop-feedback');
+
+    const open = () => {
+      fVolume.value = offer.min_lot_ton ? String(offer.min_lot_ton) : '';
+      fPreco.value  = offer.price_per_ton ? String(offer.price_per_ton) : '';
+      qsa('input[name="cond"]').forEach(r => r.checked = (r.value === (offer.incoterm || 'FOB')));
+
+      qs('#prop-max').textContent = `Disponível: ${offer.quantity_ton} t (mínimo sugerido: ${offer.min_lot_ton || 1} t)`;
+      qs('#prop-ref').textContent = `Preço de referência da oferta: ${brl(offer.price_per_ton)} / t`;
+
+      modal?.setAttribute('aria-hidden','false');
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+    };
+    const close = () => {
+      modal?.setAttribute('aria-hidden','true');
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+    };
+
+    openBtn?.addEventListener('click', (e) => { e.preventDefault(); open(); });
+    modal?.addEventListener('click', (e) => {
+      if (e.target.matches('[data-close], .tg-modal')) close();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal?.getAttribute('aria-hidden') === 'false') close();
+    });
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fdb.style.display = 'none';
+
+      const qty   = toNumber(fVolume.value);
+      const preco = toNumber(fPreco.value);
+      const cond  = (document.querySelector('input[name="cond"]:checked') || {}).value || offer.incoterm || 'FOB';
+      const prazo = fPrazo.value.trim();
+      const msg   = fMsg.value.trim();
+
+      const errs = [];
+      if (!qty || qty <= 0) errs.push('Informe o volume desejado (> 0).');
+      if (qty && offer.quantity_ton && qty > offer.quantity_ton) errs.push(`Volume não pode exceder ${offer.quantity_ton} t.`);
+      if (!preco || preco <= 0) errs.push('Informe o valor em R$/t (> 0).');
+      if (errs.length) {
+        fdb.textContent = errs.join(' ');
+        fdb.style.display = 'block';
+        fdb.style.color = '#B00020';
+        return;
+      }
+
+      const auth = JSON.parse(localStorage.getItem('tri-go:auth_user') || 'null');
+      const proposer = auth ? { id: auth.id || auth.email || 'user', name: auth.nome || auth.name || auth.email || 'Usuário' }
+                            : { id: 'user', name: 'Usuário' };
+
+      try {
+        const payload = {
+          price_per_ton: preco,
+          quantity_ton: qty,
+          message: msg,
+          proposer,
+          meta: { prazo, incoterm: cond }
+        };
+
+        if (window.OffersStore?.createProposal) {
+          OffersStore.createProposal(offer.id, payload);
+        } else {
+          const PKEY = 'tri-go:proposals';
+          const arr = JSON.parse(localStorage.getItem(PKEY) || '[]');
+          arr.push({
+            id: crypto.randomUUID?.() || ('prop_' + Date.now()),
+            created_at: new Date().toISOString(),
+            status: 'pending',
+            to_offer_id: offer.id,
+            to_offer_title: offer.title || `${offer.cultivar} • ${offer.quantity_ton}t`,
+            to_owner: { id: offer.owner?.id, name: offer.owner?.name || '' },
+            from_user: { id: proposer.id, name: proposer.name },
+            quantity_ton: qty,
+            price_per_ton: preco,
+            incoterm: cond,
+            prazo,
+            message: msg
+          });
+          localStorage.setItem(PKEY, JSON.stringify(arr));
+        }
+
+        if (window.OffersStore?.emit) window.OffersStore.emit('changed');
+
+        fdb.textContent = 'Proposta enviada com sucesso! Você pode acompanhar no seu painel.';
+        fdb.style.display = 'block';
+        fdb.style.color = '#0a6';
+        form.reset();
+        setTimeout(() => close(), 900);
+
+      } catch (err) {
+        console.error(err);
+        fdb.textContent = 'Não foi possível enviar a proposta agora. Tente novamente.';
+        fdb.style.display = 'block';
+        fdb.style.color = '#B00020';
+      }
+    });
+  })();
+  </script>
+
+  <!-- Simulador de frete -->
+  <script src="assets/js/frete.js"></script>
+
+  <!-- Abertura/fechamento do modal de frete (atalho) -->
+  <script>
+  document.getElementById('btn-open-frete')?.addEventListener('click', () => {
+    document.getElementById('modal-frete')?.setAttribute('aria-hidden','false');
+  });
+  document.getElementById('modal-frete')?.addEventListener('click', (e) => {
+    if (e.target.matches('[data-close], .tg-modal')) {
+      e.currentTarget.setAttribute('aria-hidden','true');
+    }
+  });
+  </script>
+</body>
+</html>

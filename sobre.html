@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRI-GO - Negocie TRIGO Online com Rapidez e Eficiência</title>
+
+    <!-- CSS principais -->
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/styleguide.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/modal.css" />
+    <link rel="stylesheet" href="assets/css/sobre.CSS" />
+  </head>
+
+  <body>
+    <div class="container-wrapper">
+      <header class="header">
+        <div class="container header-content">
+          <div class="logo">
+            <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" alt="TRI-GO Logo" class="logo-image" />
+            <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+          </div>
+
+          <nav class="main-nav">
+            <ul>
+              <li><a href="index.HTML" >Início</a></li>
+              <li><a href="Contact_us.html">Fale Conosco</a></li>
+              <li><a href="sobre.html"class="active" >Quem Somos</a></li>
+    
+              </li>
+            </ul>
+          </nav>
+
+          <div class="dropdown">
+            <button class="dropbtn">Entrar <span class="arrow">&#9662;</span></button>
+            <div class="dropdown-content">
+              <a href="#" data-open-auth="register">REGISTRAR</a>
+              <a href="#" data-open-auth="login">ENTRAR</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+<!-- ABOUT / QUEM SOMOS -->
+<section class="about">
+  <div class="about-container">
+    <div class="about-content fx-card">
+      <div class="about-text">
+        <h2 class="about-kicker reveal">Conheça a TRI-GO</h2>
+
+        <p class="reveal">A Tri-Go é uma startup criada para transformar a comercialização do trigo brasileiro. Somos uma plataforma digital que <strong>conecta</strong> produtores, 
+moinhos, cooperativas, tradings e parceiros logísticos, promovendo <strong>liquidez, confiança e previsibilidade</strong> em um mercado ainda marcado por negociações informais e baixa eficiência.</p>
+
+        <p class="about-highlight reveal"><strong>Com foco em simplicidade e acessibilidade, a Tri-Go oferece uma experiência <br> digital completa:</strong></p>
+
+        <ul class="reveal">
+          <li>Publicação de ofertas e pedidos</li>
+          <li>Contratos digitais</li>
+          <li>Rastreamento logístico</li>
+          <li>Pagamento protegido via escrow</li>
+        </ul>
+        <br>
+<br>
+        <p class="reveal">Tudo isso coloca o produtor no centro da negociação, ampliando seu poder de decisão, margem e previsibilidade da receita.</p>
+      </div>
+
+<div class="about-image reveal">
+  <div class="about-video-wrapper">
+    <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:20px;">
+      <iframe
+        src="https://www.youtube.com/embed/t45sWAqB9TM?autoplay=1&mute=1&loop=1&playlist=t45sWAqB9TM"
+        style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+    <div class="about-cards">
+    <div class="about-card" tabindex="0">
+      <h3 class="about-card-title">MISSÃO</h3>
+       <p class="about-card-lead"><strong>Digitalizar e conectar</strong></p>
+      <p>a cadeia do trigo no Brasil, promovendo liquidez, previsibilidade e protagonismo do produtor por meio de uma plataforma simples, segura e eficiente.</p>
+      </div>
+      <div class="about-card" tabindex="0">
+      <h3 class="about-card-title">VISÃO</h3>
+        <p>Ser a principal plataforma de comercialização de trigo do Brasil até 2030, reconhecida pela<strong> inovação, confiança e geração de valor </strong>para todos os elos da cadeia.</p>
+      </div>
+      <div class="about-card" tabindex="0">
+    <h3 class="about-card-title">VALORES</h3>
+    <ul class="about-values">
+          <li>Confiança</li>
+          <li>Transparência</li>
+          <li>Colaboração</li>
+          <li>Inovação com propósito</li>
+          <li>Protagonismo do produtor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-cta">
+  <div class="about-cta__inner">
+    <h3 class="about-cta__title">Pronto para negociar trigo com mais liquidez e previsibilidade?</h3>
+    <p class="about-cta__sub">Cadastre-se e publique ofertas em minutos. Contratos digitais, rastreamento logístico e pagamento protegido via escrow.</p>
+
+    <div class="about-cta__actions">
+      <a class="btn-cta" href="anunciador.html">Sou Anunciador</a>
+      <a class="btn-cta btn-cta--alt" href="motorista.html">Sou Motorista</a>
+    </div>
+
+    <ul class="about-cta__highlights">
+      <li>Pagamento protegido</li>
+      <li>Contratos digitais</li>
+      <li>Rastreamento logístico</li>
+      <li>Sem custo de entrada</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- Raiz para injetar os modais -->
+<div id="modal-root"></div>
+
+<!-- App (escuta [data-open-auth] e submit dos forms) -->
+<script type="module" src="assets/js/app.js"></script>
+
+<!-- Geocoder/CEP com delegação (funciona mesmo com modal injetado depois) -->
+<script>
+  let geocoder, debounceTimer;
+
+  function initMaps() {
+    geocoder = new google.maps.Geocoder();
+  }
+
+  // Formata e aciona geocode no campo CEP (delegação)
+  document.addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.matches('input[name="cep"]')) return;
+
+    const digits = el.value.replace(/\D/g, '').slice(0, 8);
+    el.value = digits.replace(/^(\d{5})(\d{0,3}).*/, (_, a, b) => (b ? `${a}-${b}` : a));
+
+    clearTimeout(debounceTimer);
+    if (digits.length === 8) {
+      debounceTimer = setTimeout(() => geocodeCEP(digits), 250);
+    } else {
+      fillAddress({ logradouro: '', bairro: '', cidade: '', uf: '' });
+    }
+  });
+
+  function geocodeCEP(cep) {
+    if (!geocoder || !/^\d{8}$/.test(cep)) return;
+    geocoder.geocode(
+      { address: cep, componentRestrictions: { country: 'BR' } },
+      (results, status) => {
+        if (status !== 'OK' || !results?.length) return;
+
+        const comps = results[0].address_components;
+        const get = (...types) => {
+          const c = comps.find(x => types.some(t => x.types.includes(t)));
+          return c ? { long: c.long_name, short: c.short_name } : { long: '', short: '' };
+        };
+
+        const route  = get('route').long;
+        const number = get('street_number').long;
+        const bairro = get('sublocality_level_1','sublocality','neighborhood','political').long;
+        const cidade = get('administrative_area_level_2','locality').long;
+        const uf     = get('administrative_area_level_1').short;
+
+        fillAddress({
+          logradouro: [route, number].filter(Boolean).join(', '),
+          bairro, cidade, uf
+        });
+      }
+    );
+  }
+
+  function fillAddress({ logradouro, bairro, cidade, uf }) {
+    const set = (sel, val) => {
+      const el = document.querySelector(sel);
+      if (el) el.value = val || '';
+    };
+    set('input[name="logradouro"]', logradouro);
+    set('input[name="bairro"]', bairro);
+    set('input[name="cidade"]', cidade);
+    set('input[name="uf"]', uf);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM0_zfY0C026BnwXSuTFbjgKXhSv8Wgo4&callback=initMaps" async defer></script>
+
+<script>
+  // revela elementos quando entram na viewport
+  (function(){
+    const els = document.querySelectorAll('.reveal');
+    const show = el => el.classList.add('is-visible');
+    if ('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) show(e.target); });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: .1 });
+      els.forEach(el=>io.observe(el));
+    } else {
+      els.forEach(show); // fallback
+    }
+  }());
+</script>
+
+      <footer class="main-footer">
+        <div class="container footer-content">
+          <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="Contact_us.html">Fale Conosco</a></li>
+              <li><a href="sobre.html">Quem Somos</a></li>
+              <li><a href="#">Quero Ser um Parceiro</a></li>
+              <li><a href="#">Entre</a></li>
+            </ul>
+          </nav>
+
+          <div class="social-links">
+            <a href="#" class="social-btn"><img src="img/mdi_facebook.svg" alt="Facebook" /></a>
+            <a href="#" class="social-btn"><img src="img/entypo-social_instagram-with-circle.svg" alt="Instagram" /></a>
+          </div>
+
+          <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

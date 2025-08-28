@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRI-GO • Publicar nova venda</title>
+
+  <!-- CSS globais -->
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="/assets/css/styleguide.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/modal.css" />
+  <link rel="stylesheet" href="assets/css/oferta-nova.css" />
+</head>
+<body>
+  <div class="container-wrapper">
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">
+          <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" alt="TRI-GO Logo" class="logo-image" />
+          <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.HTML" class="active">Início</a></li>
+            <li><a href="Contact_us.html">Fale Conosco</a></li>
+            <li><a href="sobre.html">Quem Somos</a></li>
+            <li class="nav-parceiro-dropdown"></li>
+          </ul>
+        </nav>
+
+        <div class="dropdown">
+          <button class="dropbtn">Entrar <span class="arrow">&#9662;</span></button>
+          <div class="dropdown-content">
+            <a href="#" data-open-auth="register">REGISTRAR</a>
+            <a href="#" data-open-auth="login">ENTRAR</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO -->
+    <main class="publish">
+      <div class="form-card">
+        <div class="form-head">
+          <a href="painel-vendedor.html" class="back-link">← Voltar</a>
+          <h1>Publicar nova venda</h1>
+          <p class="hint-top">
+            Campos de qualidade seguem o padrão: <b>PH / Proteína / W / Falling Number</b> como <b>mínimos</b> e
+            <b>DON / Umidade / Impurezas</b> como <b>máximos</b>.
+          </p>
+        </div>
+
+        <div id="msg-ok" class="ok" hidden>Oferta salva com sucesso!</div>
+        <div id="msg-err" class="err" hidden></div>
+
+        <form id="form-oferta" class="form-card__form" novalidate>
+          <div class="grid">
+            <!-- Tipo de trigo -->
+            <div class="col-6">
+              <label for="tipo">Tipo de trigo</label>
+              <select id="tipo" required>
+                <option value="" selected disabled>Selecione</option>
+                <option value="1">Melhorador</option>
+                <option value="2">Pão</option>
+                <option value="3">Doméstico</option>
+                <option value="4">Branqueador</option>
+                <option value="5">Biscoito</option>
+              </select>
+            </div>
+
+            <div class="col-6">
+              <label for="safra">Safra</label>
+              <select id="safra" required>
+                <option value="" selected disabled>Selecione</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+              </select>
+              <span class="hint">Ex.: 2023, 2024, 2025…</span>
+            </div>
+
+            <!-- Cultivar -->
+            <div class="col-12">
+              <label for="cultivar">Cultivar (nome comercial)</label>
+              <input id="cultivar" list="lista-cultivares" placeholder="Selecione ou digite o nome" />
+              <datalist id="lista-cultivares"></datalist>
+              <span class="hint">Você pode escolher da lista ou digitar (aceita novas cultivares).</span>
+            </div>
+
+            <!-- Qualidade -->
+            <div class="col-12"><h3 class="block-title">Qualidade do trigo</h3></div>
+            <div class="col-12">
+              <div class="quality-grid">
+                <div>
+                  <label for="phMin">PH <small>(mínimo)</small></label>
+                  <input id="phMin" type="text" inputmode="decimal" placeholder="ex: 78,5" required />
+                  <span class="hint">1 a 100, com 1 casa decimal.</span>
+                </div>
+
+                <div>
+                  <label for="protMin">Proteína <small>(mínimo)</small></label>
+                  <div class="pair">
+                    <input id="protMin" type="text" inputmode="decimal" placeholder="ex: 12,5" required />
+                    <span class="u-suf">%</span>
+                  </div>
+                  <span class="hint">1% a 30%, com 1 casa decimal.</span>
+                </div>
+
+                <div>
+                  <label for="wMin">W <small>(mínimo)</small></label>
+                  <input id="wMin" type="number" step="1" min="0" max="1000" placeholder="0–1000" required />
+                </div>
+
+                <div>
+                  <label for="fnMin">Falling Number <small>(mínimo)</small></label>
+                  <div class="pair">
+                    <input id="fnMin" type="number" step="1" min="0" placeholder="ex: 250" required />
+                    <span class="u-suf">s</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="donMax">DON <small>(máximo)</small></label>
+                  <div class="pair">
+                    <input id="donMax" type="number" step="1" min="0" placeholder="ex: 2000" required />
+                    <span class="u-suf">ppb</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="umiMax">Umidade <small>(máximo)</small></label>
+                  <div class="pair">
+                    <input id="umiMax" type="text" inputmode="decimal" placeholder="ex: 13,0" required />
+                    <span class="u-suf">%</span>
+                  </div>
+                  <span class="hint">0 a 100. Aceita vírgula.</span>
+                </div>
+
+                <div>
+                  <label for="impMax">Impurezas <small>(máximo)</small></label>
+                  <div class="pair">
+                    <input id="impMax" type="text" inputmode="decimal" placeholder="ex: 1,0" required />
+                    <span class="u-suf">%</span>
+                  </div>
+                  <span class="hint">0 a 100. Aceita vírgula.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Volume e preço -->
+            <div class="col-6">
+              <label for="volume">Volume (t)</label>
+              <input id="volume" type="number" step="0.01" min="0.01" placeholder="ex: 12" required />
+            </div>
+
+            <div class="col-6">
+              <label for="precoTon">Preço desejado (R$/t)</label>
+              <input id="precoTon" type="text" inputmode="decimal" placeholder="ex: 1.150,00" required />
+            </div>
+
+            <!-- ENDEREÇO POR CEP -->
+            <div class="col-12"><h3 class="block-title">Localização da carga (via CEP)</h3></div>
+
+            <div class="col-4">
+              <label for="cep">CEP</label>
+              <input id="cep" type="text" inputmode="numeric" maxlength="9" placeholder="00000-000" required />
+              <span class="hint">Digite 8 números; preenchemos automaticamente.</span>
+            </div>
+
+            <div class="col-8">
+              <label for="logradouro">Logradouro</label>
+              <input id="logradouro" type="text" placeholder="Rua/Avenida" />
+            </div>
+
+            <div class="col-4">
+              <label for="numero">Número</label>
+              <input id="numero" type="text" placeholder="123" />
+            </div>
+
+            <div class="col-4">
+              <label for="bairro">Bairro</label>
+              <input id="bairro" type="text" placeholder="Bairro" />
+            </div>
+
+            <div class="col-3">
+              <label for="cidade">Cidade</label>
+              <input id="cidade" type="text" placeholder="Cidade" />
+            </div>
+
+            <div class="col-1">
+              <label for="uf">UF</label>
+              <input id="uf" type="text" maxlength="2" placeholder="RS" />
+            </div>
+
+            <div class="col-12">
+              <label for="local">Localização (auto)</label>
+              <input id="local" type="text" placeholder="Cidade/UF, Bairro, Logradouro…" readonly />
+              <span class="hint">Gerado automaticamente a partir do CEP e dos campos acima.</span>
+            </div>
+
+            <!-- Condição -->
+            <div class="col-12">
+              <label>Condição</label>
+              <div class="radios">
+                <label><input type="radio" name="condicao" value="FOB" required /> FOB</label>
+                <label><input type="radio" name="condicao" value="CIF" /> CIF</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="painel-vendedor.html">Cancelar</a>
+            <button type="submit" class="btn btn-primary">QUERO ANUNCIAR MINHA OFERTA</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="main-footer">
+      <div class="container footer-content">
+        <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+        <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Store + seed (DEVEM vir ANTES do oferta-nova.js) -->
+<script src="assets/js/offers-store.js"></script>
+<script src="assets/js/offers-seed.js"></script>
+<script>
+  // inicializa a store (idempotente; só semeia se não houver FIXED)
+  if (window.OffersStore) {
+    OffersStore.init({ seedFixedOffers: window.SEED_EXEMPLO || [] });
+  }
+</script>
+
+<!-- JS desta página (usa a Store já carregada) -->
+<script src="assets/js/oferta-nova.js"></script>
+
+<!-- Google Maps (Geocoder) -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM0_zfY0C026BnwXSuTFbjgKXhSv8Wgo4&callback=initMaps" async defer></script>
+
+
+  
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TRI-GO • Propostas da Oferta</title>
+
+  <!-- CSS base -->
+  <link rel="stylesheet" href="globals.css" />
+  <link rel="stylesheet" href="styleguide.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- CSS do painel (cards/grid) + CSS específico desta página -->
+  <link rel="stylesheet" href="vendor.css" />
+  <link rel="stylesheet" href="propostas-oferta.css" />
+</head>
+<body class="body--produtor">
+  <div class="container-wrapper">
+    <!-- Header padrão -->
+    <header class="header">
+      <div class="container header-content">
+        <div class="logo">
+          <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" class="logo-image" alt="TRI-GO" />
+          <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="index.HTML">Início</a></li>
+            <li><a href="Contact_us.html">Fale Conosco</a></li>
+            <li><a href="sobre.html">Quem Somos</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo -->
+    <main class="seller">
+      <a class="back-link" href="painel-vendedor.html">← Voltar</a>
+
+      <div class="props-toolbar">
+        <h2 id="prop-title" class="props-title">PROPOSTAS</h2>
+        <div class="pill"><span id="count-props">0</span> pendentes</div>
+      </div>
+
+      <div id="props-grid" class="props-grid"></div>
+    </main>
+
+    <!-- Footer padrão -->
+    <footer class="main-footer">
+      <div class="container footer-content">
+        <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+        <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal Renegociação -->
+  <div id="modal-reneg" class="modal-ctr" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-title">Renegociar Proposta</h3>
+        <button class="modal-close" type="button" aria-label="Fechar" onclick="closeReneg()">×</button>
+      </div>
+      <form id="form-reneg">
+        <div class="form-grid">
+          <div class="field">
+            <label for="r-preco">Preço (R$/saca)</label>
+            <input id="r-preco" type="number" step="0.01" min="0" required />
+          </div>
+          <div class="field">
+            <label for="r-volume">Volume (kg)</label>
+            <input id="r-volume" type="number" step="1" min="1" required />
+          </div>
+          <div class="field">
+            <label for="r-prazo">Prazo (dias)</label>
+            <input id="r-prazo" type="number" step="1" min="1" required />
+          </div>
+          <div class="field full">
+            <label for="r-msg">Mensagem (opcional)</label>
+            <textarea id="r-msg" rows="3" placeholder="Observações ou condições adicionais…"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" onclick="closeReneg()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Enviar contraproposta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ofertas estáticas -->
+  <script src="offers-data.js"></script>
+  <script>
+    /* Merge: base + ofertas do usuário */
+    const BASE_OFFERS = Array.isArray(window.OFFERS) ? window.OFFERS : [];
+    const USER_OFFERS = JSON.parse(localStorage.getItem('tri-go:offers_user') || '[]');
+    const seen = new Set();
+    const ALL_OFFERS = [...BASE_OFFERS, ...USER_OFFERS]
+      .filter(o => o && !seen.has(o.id) && seen.add(o.id));
+
+    /* Propostas no localStorage */
+    const KEY_PROPS = 'tri-go:propostas';
+    const loadProps = ()=> JSON.parse(localStorage.getItem(KEY_PROPS) || '[]');
+    const saveProps = (arr)=> localStorage.setItem(KEY_PROPS, JSON.stringify(arr));
+    const fmtBRL = (v)=> Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+
+    /* Oferta alvo */
+    const qs = new URLSearchParams(location.search);
+    const ofertaId = qs.get('oferta') || ALL_OFFERS[0]?.id || null;
+    const oferta = ALL_OFFERS.find(o=>o.id===ofertaId);
+
+    function tituloOferta(o){
+      if (!o) return 'PROPOSTAS';
+      const tipo = o.tipoTrigo ? `Tipo ${o.tipoTrigo}` : 'Tipo de Trigo';
+      const safra = o.safra ? ` • Safra ${o.safra}` : '';
+      return `PROPOSTAS ${tipo}${safra}`;
+    }
+    document.getElementById('prop-title').textContent = tituloOferta(oferta);
+
+    /* Modal: estado e handlers */
+    let currentPropId = null;
+    function openReneg(p){
+      currentPropId = p.id;
+      document.getElementById('r-preco').value = p.precoSaca ?? '';
+      document.getElementById('r-volume').value = p.volumeKg ?? '';
+      document.getElementById('r-prazo').value = p.prazoDias ?? '';
+      document.getElementById('r-msg').value = p.msg || '';
+      document.getElementById('modal-reneg').classList.add('is-open');
+    }
+    function closeReneg(){
+      currentPropId = null;
+      document.getElementById('modal-reneg').classList.remove('is-open');
+    }
+
+    document.getElementById('form-reneg').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(!currentPropId) return;
+      const arr = loadProps();
+      const i = arr.findIndex(x=>x.id===currentPropId);
+      if(i>=0){
+        arr[i].precoSaca = +document.getElementById('r-preco').value;
+        arr[i].volumeKg  = +document.getElementById('r-volume').value;
+        arr[i].prazoDias = +document.getElementById('r-prazo').value;
+        arr[i].msg       = document.getElementById('r-msg').value.trim();
+        arr[i].status    = 'CONTRA_PROPOSTA';
+        arr[i].historico = (arr[i].historico || []).concat({
+          quando: new Date().toISOString(),
+          acao: 'CONTRA_PROPOSTA',
+          por: 'vendedor',
+          payload: { precoSaca: arr[i].precoSaca, volumeKg: arr[i].volumeKg, prazoDias: arr[i].prazoDias, msg: arr[i].msg }
+        });
+        saveProps(arr);
+      }
+      closeReneg();
+      render();
+    });
+
+    /* Ações */
+    function aceitar(id){
+      const arr = loadProps();
+      const i = arr.findIndex(p=>p.id===id);
+      if(i>=0){
+        arr[i].status = 'ACEITA';
+        arr[i].historico = (arr[i].historico || []).concat({
+          quando: new Date().toISOString(), acao:'ACEITA', por:'vendedor'
+        });
+        saveProps(arr);
+      }
+      render();
+    }
+    function recusar(id){
+      const arr = loadProps();
+      const i = arr.findIndex(p=>p.id===id);
+      if(i>=0){
+        arr[i].status = 'RECUSADA';
+        arr[i].historico = (arr[i].historico || []).concat({
+          quando: new Date().toISOString(), acao:'RECUSADA', por:'vendedor'
+        });
+        saveProps(arr);
+      }
+      render();
+    }
+    function badge(status){
+      return `<span class="status-badge status-${status}">${status.replace('_',' ')}</span>`;
+    }
+
+    /* Render */
+    function render(){
+      const grid = document.getElementById('props-grid');
+      const list = loadProps().filter(p=>p.ofertaId===ofertaId && ['PENDENTE','CONTRA_PROPOSTA'].includes(p.status));
+
+      document.getElementById('count-props').textContent = list.length;
+
+      if (!list.length){
+        grid.innerHTML = `<div class="empty">Sem propostas pendentes para esta oferta.</div>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
+        <article class="prop-card">
+          <header class="prop-card-head">PROPOSTA ${p.id.toUpperCase()} ${badge(p.status)}</header>
+          <div class="prop-rows">
+            <div class="prop-row"><span class="muted">Prazo:</span> <b>${p.prazoDias} dias</b></div>
+            <div class="prop-row"><span class="muted">Condição:</span> <b>${p.condicao}</b></div>
+            <div class="prop-row"><span class="muted">Quantidade:</span> <b>${p.volumeKg} kg</b></div>
+          </div>
+          <div class="prop-price">${fmtBRL(p.precoSaca)}</div>
+          <div class="prop-actions">
+            <button class="btn btn-accept" data-id="${p.id}">ACEITAR</button>
+            <button class="btn btn-reject" data-id="${p.id}">RECUSAR</button>
+            <button class="btn" data-reneg="${p.id}">RENEGOCIAR</button>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.btn-accept').forEach(b=>{
+        b.onclick = ()=> aceitar(b.dataset.id);
+      });
+      grid.querySelectorAll('.btn-reject').forEach(b=>{
+        b.onclick = ()=> recusar(b.dataset.id);
+      });
+      grid.querySelectorAll('[data-reneg]').forEach(b=>{
+        b.onclick = ()=>{
+          const id = b.getAttribute('data-reneg');
+          const p = loadProps().find(x=>x.id===id);
+          if(p) openReneg(p);
+        };
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- partials/login.html -->
+<section class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close" aria-label="Fechar" data-close>×</button>
+
+    <form id="form-login" class="modal-form" autocomplete="on">
+      <h2 id="login-title" class="modal-title">Bem-vindo!</h2>
+      <p class="muted">Vamos entrar?</p>
+
+      <label class="field">
+        <span>E-mail</span>
+        <input type="email" name="email" placeholder="Digite aqui!" required />
+      </label>
+
+      <label class="field">
+        <span>Senha</span>
+        <input type="password" name="password" placeholder="••••••••" required minlength="6" />
+      </label>
+
+      <button class="btn primary full" type="submit">ENTRAR</button>
+    </form>
+  </div>
+</section>

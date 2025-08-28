@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRI-GO - Negocie TRIGO Online com Rapidez e Eficiência</title>
+
+    <!-- CSS principais -->
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/styleguide.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/modal.css" />
+
+    <!-- Estilos do lock/blur das ofertas -->
+    <style>
+      .offers-grid { position: relative; }
+      .offer-card.locked {
+        position: relative;
+        filter: blur(2.6px) grayscale(.08);
+        pointer-events: none;
+      }
+      .offer-card.locked .lock-msg {
+        position: absolute; inset: 0;
+        display: flex; align-items: center; justify-content: center;
+        text-align: center; padding: 12px;
+        font-weight: 800; line-height: 1.2;
+        color: #1f3b2d;
+        background: rgba(255,255,255,.62);
+        border: 1px dashed rgba(224,192,104,.7);
+        border-radius: 12px;
+      }
+      .offer-card.locked .lock-msg::after {
+        content: "Cadastre-se para acessar as ofertas";
+      }
+      @media (pointer: coarse) {
+        .offer-card.locked { filter: blur(3px); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-wrapper">
+      <!-- ===== HEADER ===== -->
+      <header class="header">
+        <div class="container header-content">
+          <div class="logo">
+            <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" alt="TRI-GO Logo" class="logo-image" />
+            <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+          </div>
+
+          <nav class="main-nav">
+            <ul>
+              <li><a href="index.html" class="active">Início</a></li>
+              <li><a href="Contact_us.html">Fale Conosco</a></li>
+              <li><a href="sobre.html">Quem Somos</a></li>
+              <li class="nav-parceiro-dropdown"></li>
+            </ul>
+          </nav>
+
+          <div class="dropdown">
+            <button class="dropbtn">Entrar <span class="arrow">&#9662;</span></button>
+            <div class="dropdown-content">
+              <a href="#" data-open-auth="register">REGISTRAR</a>
+              <a href="#" data-open-auth="login">ENTRAR</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ===== MAIN ===== -->
+      <main>
+        <!-- HERO -->
+        <section class="hero-wrapper">
+          <div class="container hero-content">
+            <h2>Negocie TRIGO Online com Rapidez e Eficiência</h2>
+            <p>
+              A plataforma digital feita para você <strong>COMPRAR</strong> e
+              <strong>VENDER</strong> com segurança, agilidade e total transparência.
+            </p>
+            <p class="tagline">Simples como deve ser.</p>
+            <div class="cta-buttons">
+              <a href="#" class="btn-primary" id="btn-comprar">QUERO COMPRAR</a>
+              <a href="painel-vendedor.html" class="btn-secondary" id="btn-vender">QUERO VENDER</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- OFERTAS -->
+        <section class="offer-section">
+          <div class="container">
+            <div class="offer-header">
+              <div class="left-group">
+                <img src="img/conjunto-de-espigas-de-trigo 1.png" alt="TRIGO" class="trigo" />
+                <h2 class="offer-title">Ofertas Disponíveis</h2>
+              </div>
+              <button class="filter-btn">
+                Filtrar Ofertas <img src="img/Vector.svg" alt="Filtro" />
+              </button>
+            </div>
+
+            <section id="ofertas-index" class="offers-grid"></section>
+          </div>
+        </section>
+      </main>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="main-footer">
+        <div class="container footer-content">
+          <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="Contact_us.html">Fale Conosco</a></li>
+              <li><a href="sobre.html">Quem Somos</a></li>
+              <li><a href="#">Quero Ser um Parceiro</a></li>
+              <li><a href="#">Entre</a></li>
+            </ul>
+          </nav>
+
+          <div class="social-links">
+            <a href="#" class="social-btn"><img src="img/mdi_facebook.svg" alt="Facebook" /></a>
+            <a href="#" class="social-btn"><img src="img/entypo-social_instagram-with-circle.svg" alt="Instagram" /></a>
+          </div>
+
+          <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Guard (seu guard.js geral, se existir) -->
+    <script src="assets/js/guard.js"></script>
+
+    <!-- Raiz para modais -->
+    <div id="modal-root"></div>
+
+    <!-- App (abre modal via [data-open-auth]) -->
+    <script type="module" src="assets/js/app.js"></script>
+
+    <!-- Geocoder/CEP (delegação p/ inputs em modais) -->
+    <script>
+      let geocoder, debounceTimer;
+      function initMaps() { geocoder = new google.maps.Geocoder(); }
+
+      document.addEventListener('input', (e) => {
+        const el = e.target;
+        if (!el.matches('input[name="cep"]')) return;
+
+        const digits = el.value.replace(/\D/g, '').slice(0, 8);
+        el.value = digits.replace(/^(\d{5})(\d{0,3}).*/, (_, a, b) => (b ? `${a}-${b}` : a));
+
+        clearTimeout(debounceTimer);
+        if (digits.length === 8) {
+          debounceTimer = setTimeout(() => geocodeCEP(digits), 250);
+        } else {
+          fillAddress({ logradouro: '', bairro: '', cidade: '', uf: '' });
+        }
+      });
+
+      function geocodeCEP(cep) {
+        if (!geocoder || !/^\d{8}$/.test(cep)) return;
+        geocoder.geocode(
+          { address: cep, componentRestrictions: { country: 'BR' } },
+          (results, status) => {
+            if (status !== 'OK' || !results?.length) return;
+
+            const comps = results[0].address_components;
+            const get = (...types) => {
+              const c = comps.find(x => types.some(t => x.types.includes(t)));
+              return c ? { long: c.long_name, short: c.short_name } : { long: '', short: '' };
+            };
+
+            const route  = get('route').long;
+            const number = get('street_number').long;
+            const bairro = get('sublocality_level_1','sublocality','neighborhood','political').long;
+            const cidade = get('administrative_area_level_2','locality').long;
+            const uf     = get('administrative_area_level_1').short;
+
+            fillAddress({
+              logradouro: [route, number].filter(Boolean).join(', '),
+              bairro, cidade, uf
+            });
+          }
+        );
+      }
+
+      function fillAddress({ logradouro, bairro, cidade, uf }) {
+        const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.value = val || ''; };
+        set('input[name="logradouro"]', logradouro);
+        set('input[name="bairro"]', bairro);
+        set('input[name="cidade"]', cidade);
+        set('input[name="uf"]', uf);
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM0_zfY0C026BnwXSuTFbjgKXhSv8Wgo4&callback=initMaps" async defer></script>
+
+    <!-- Store e seed -->
+    <script src="assets/js/offers-store.js"></script>
+    <script src="assets/js/offers-seed.js"></script>
+
+<script>
+/* ===== INDEX: bootstrap robusto das ofertas ===== */
+(function () {
+  // 1) Checagem básica de carregamento
+  if (!window.OffersStore) {
+    console.error('offers-store.js não carregou. Verifique o caminho (use "assets/js/offers-store.js" sem barra inicial).');
+    const grid = document.querySelector('#ofertas-index');
+    if (grid) grid.innerHTML = '<div class="empty">Erro ao carregar as ofertas.</div>';
+    return;
+  }
+
+  // 2) Inicializa a Store e força seed se necessário
+  function initStoreWithReseedIfEmpty() {
+    // inicializa com o seed (se estiver disponível)
+    const seed = Array.isArray(window.SEED_EXEMPLO) ? window.SEED_EXEMPLO : [];
+    OffersStore.init({ seedFixedOffers: seed });
+
+    // se o FIXED estiver vazio mas temos seed -> força reseed (apaga e recria)
+    try {
+      const fixedNow = JSON.parse(localStorage.getItem('tri-go:offers_fixed') || '[]');
+      if ((!fixedNow || !fixedNow.length) && seed.length) {
+        localStorage.removeItem('tri-go:offers_fixed');
+        localStorage.removeItem('tri-go:offers_user');
+        localStorage.removeItem('tri-go:proposals');
+        OffersStore.init({ seedFixedOffers: seed });
+      }
+    } catch (_) {}
+  }
+
+  // 3) Renderização
+  const grid = document.querySelector('#ofertas-index');
+  const brl = (v) =>
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(v || 0));
+
+  const card = (o) => {
+    const img = o.meta?.img || 'img/Rectangle 160.png';
+    const loc = [o.location?.city, o.location?.uf].filter(Boolean).join(' - ');
+    return `
+      <a class="offer-card" href="oferta.html?id=${encodeURIComponent(o.id)}" aria-label="${o.title}">
+        <img src="${img}" alt="${o.title}" class="offer-img" />
+        <div class="offer-info">
+          <div class="offer-price">${brl(o.price_per_ton)} <span class="price-unit">/ tonelada</span></div>
+          <div class="offer-desc">${o.cultivar || 'Trigo'} • Lote: ${o.quantity_ton} t</div>
+          <div class="loc">${loc || ''}</div>
+          <button class="btn-details">VER DETALHES</button>
+        </div>
+      </a>
+    `;
+  };
+
+  function render() {
+    if (!grid) return;
+    const ofertas = OffersStore.list({
+      type: 'sell',
+      status: 'open',
+      sortBy: 'updated_at',
+      sortDir: 'desc'
+    });
+
+    grid.innerHTML = ofertas.length
+      ? ofertas.map(card).join('')
+      : '<div class="empty">Sem ofertas no momento.</div>';
+  }
+
+  // 4) Bootstrap
+  initStoreWithReseedIfEmpty();
+  render();
+  OffersStore.on('changed', render);
+
+  // 5) (Opcional) helper pra resetar via console se precisar
+  window.__resetOffersStore = function () {
+    localStorage.removeItem('tri-go:offers_fixed');
+    localStorage.removeItem('tri-go:offers_user');
+    localStorage.removeItem('tri-go:proposals');
+    console.info('Store limpa. Recarregue a página para re-seedar.');
+  };
+})();
+</script>
+
+  </body>
+</html>

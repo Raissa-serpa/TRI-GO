@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRI-GO - Entre em contato</title>
+
+    <!-- CSS principais -->
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="/assets/css/styleguide.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/modal.css" />
+    <link rel="stylesheet" href="assets/css/fale-conosco.CSS" />
+ 
+  </head>
+
+  <body>
+    <div class="container-wrapper">
+      <header class="header">
+        <div class="container header-content">
+          <div class="logo">
+            <img src="img/imgbin_table-reservation-computer-icons-restaurant-png 1.png" alt="TRI-GO Logo" class="logo-image" />
+            <h1 class="logo-text"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h1>
+          </div>
+
+          <nav class="main-nav">
+            <ul>
+              <li><a href="index.HTML" >Início</a></li>
+              <li><a href="Contact_us.html"class="active">Fale Conosco</a></li>
+              <li><a href="sobre.html">Quem Somos</a></li>
+              
+              </li>
+            </ul>
+          </nav>
+
+          <div class="dropdown">
+            <button class="dropbtn">Entrar <span class="arrow">&#9662;</span></button>
+            <div class="dropdown-content">
+              <a href="#" data-open-auth="register">REGISTRAR</a>
+              <a href="#" data-open-auth="login">ENTRAR</a>
+            </div>
+          </div>
+        </div>
+      </header>
+            </div>
+          </div>
+        </div>
+      </header>
+<main class="contact">
+    <div class="contact-container">
+      <div class="contact-card">
+        <h2 class="contact-title">Fale Conosco</h2>
+        <p class="contact-sub">Envie suas dúvidas, propostas ou solicitações. Responderemos o quanto antes.</p>
+
+        <div id="contact-ok" class="contact-ok" hidden>✓ Mensagem enviada com sucesso! Em breve entraremos em contato.</div>
+
+        <form id="contact-form" novalidate>
+          <table class="contact-table" aria-label="Formulário de contato">
+            <tbody>
+              <tr>
+                <th><label for="nome" class="req">Nome completo</label></th>
+                <td><input id="nome" name="nome" type="text" class="input" placeholder="Seu nome" required /></td>
+              </tr>
+
+              <tr>
+                <th><label for="email" class="req">E-mail</label></th>
+                <td><input id="email" name="email" type="email" class="input" placeholder="voce@exemplo.com" required pattern="^[^@\\s]+@[^@\\s]+\\.[a-zA-Z]{2,}$" /></td>
+              </tr>
+
+              <tr>
+                <th><label for="telefone">Telefone/Celular</label></th>
+                <td><input id="telefone" name="telefone" type="tel" class="input" placeholder="(00) 00000-0000" /></td>
+              </tr>
+
+              <tr>
+                <th><label for="empresa">Empresa (opcional)</label></th>
+                <td><input id="empresa" name="empresa" type="text" class="input" placeholder="Nome da empresa" /></td>
+              </tr>
+
+              <tr>
+                <th><label for="assunto" class="req">Assunto</label></th>
+                <td>
+                  <select id="assunto" name="assunto" class="input" required>
+                    <option value="" selected disabled hidden>Selecione…</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="Parcerias">Parcerias</option>
+                    <option value="Suporte">Suporte</option>
+                    <option value="Duvidas">Dúvidas Gerais</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <th><span class="req">Sou</span></th>
+                <td class="inline-options">
+                  <label class="radio"><input type="radio" name="perfil" value="Produtor" required /> Produtor</label>
+                  <label class="radio"><input type="radio" name="perfil" value="Comprador" /> Comprador</label>
+                  <label class="radio"><input type="radio" name="perfil" value="Trader" /> Trader</label>
+                  <label class="radio"><input type="radio" name="perfil" value="Motorista" /> Motorista</label>
+                  <label class="radio"><input type="radio" name="perfil" value="Anunciante" /> Anunciante</label>
+                  <label class="radio"><input type="radio" name="perfil" value="Outro" /> Outro</label>
+                </td>
+              </tr>
+
+              <tr>
+                <th><label for="mensagem" class="req">Mensagem</label></th>
+                <td><textarea id="mensagem" name="mensagem" class="input" rows="12" placeholder="Escreva sua mensagem…" required></textarea></td>
+              </tr>
+
+              <tr>
+                <th><label for="anexo">Anexo (opcional)</label></th>
+                <td><input id="anexo" name="anexo" type="file" class="input" /></td>
+              </tr>
+
+              <tr>
+                <th><label for="consent" class="req">Autorização</label></th>
+                <td>
+                  <label class="check">
+                    <input id="consent" name="consent" type="checkbox" required />
+                    Autorizo o contato da TRI-GO para tratativas sobre esta mensagem.
+                  </label>
+                </td>
+              </tr>
+
+              <tr>
+                <th></th>
+                <td class="actions">
+                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  <button type="reset" class="btn">Limpar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+        <div class="contact-side">
+          <h3>Outros canais</h3>
+          <ul>
+            <li><strong>E-mail:</strong> contato@tri-go.com.br</li>
+            <li><strong>Comercial:</strong> comercial@tri-go.com.br</li>
+            <li><strong>Telefone:</strong> (11) 0000-0000</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+     
+  </main>
+ <footer class="main-footer">
+        <div class="container footer-content">
+          <h2 class="footer-logo"><span class="text-green">TRI-</span><span class="text-gold">GO</span></h2>
+          <nav class="footer-nav">
+            <ul>
+              <li><a href="Contact_us.html">Fale Conosco</a></li>
+              <li><a href="sobre.html">Quem Somos</a></li>
+              <li><a href="#">Quero Ser um Parceiro</a></li>
+              <li><a href="#">Entre</a></li>
+            </ul>
+          </nav>
+
+          <div class="social-links">
+            <a href="#" class="social-btn"><img src="img/mdi_facebook.svg" alt="Facebook" /></a>
+            <a href="#" class="social-btn"><img src="img/entypo-social_instagram-with-circle.svg" alt="Instagram" /></a>
+          </div>
+
+          <p class="copyright">tri.go.com | Todos os direitos reservados</p>
+        </div>
+      </footer>
+
+<!-- Raiz para injetar os modais -->
+<div id="modal-root"></div>
+
+<!-- App (escuta [data-open-auth] e submit dos forms) -->
+<script type="module" src="assets/js/app.js"></script>
+
+<!-- Geocoder/CEP com delegação (funciona mesmo com modal injetado depois) -->
+<script>
+  let geocoder, debounceTimer;
+
+  function initMaps() {
+    geocoder = new google.maps.Geocoder();
+  }
+
+  // Formata e aciona geocode no campo CEP (delegação)
+  document.addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.matches('input[name="cep"]')) return;
+
+    const digits = el.value.replace(/\D/g, '').slice(0, 8);
+    el.value = digits.replace(/^(\d{5})(\d{0,3}).*/, (_, a, b) => (b ? `${a}-${b}` : a));
+
+    clearTimeout(debounceTimer);
+    if (digits.length === 8) {
+      debounceTimer = setTimeout(() => geocodeCEP(digits), 250);
+    } else {
+      fillAddress({ logradouro: '', bairro: '', cidade: '', uf: '' });
+    }
+  });
+
+  function geocodeCEP(cep) {
+    if (!geocoder || !/^\d{8}$/.test(cep)) return;
+    geocoder.geocode(
+      { address: cep, componentRestrictions: { country: 'BR' } },
+      (results, status) => {
+        if (status !== 'OK' || !results?.length) return;
+
+        const comps = results[0].address_components;
+        const get = (...types) => {
+          const c = comps.find(x => types.some(t => x.types.includes(t)));
+          return c ? { long: c.long_name, short: c.short_name } : { long: '', short: '' };
+        };
+
+        const route  = get('route').long;
+        const number = get('street_number').long;
+        const bairro = get('sublocality_level_1','sublocality','neighborhood','political').long;
+        const cidade = get('administrative_area_level_2','locality').long;
+        const uf     = get('administrative_area_level_1').short;
+
+        fillAddress({
+          logradouro: [route, number].filter(Boolean).join(', '),
+          bairro, cidade, uf
+        });
+      }
+    );
+  }
+
+  function fillAddress({ logradouro, bairro, cidade, uf }) {
+    const set = (sel, val) => {
+      const el = document.querySelector(sel);
+      if (el) el.value = val || '';
+    };
+    set('input[name="logradouro"]', logradouro);
+    set('input[name="bairro"]', bairro);
+    set('input[name="cidade"]', cidade);
+    set('input[name="uf"]', uf);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM0_zfY0C026BnwXSuTFbjgKXhSv8Wgo4&callback=initMaps" async defer></script>
+</html>
